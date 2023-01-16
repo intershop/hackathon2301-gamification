@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { OverworldPageComponent } from './pages/overworld-page/overworld-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OverworldPageComponent
   ],
   imports: [
     BrowserModule,
