@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { LoaderService } from '@intershop/iap-core';
 
 @Component({
@@ -6,8 +6,12 @@ import { LoaderService } from '@intershop/iap-core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   constructor(loaderService: LoaderService) {
     loaderService.toggleLoader(false);
+  }
+
+  ngAfterViewInit(): void {
+    (document.getElementById('a') as HTMLAudioElement).play();
   }
 }

@@ -1,0 +1,44 @@
+:host {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+
+    width: 200px;
+
+}
+
+.level {
+    position: absolute;
+    bottom: 25px;
+}
+
+progress {
+    width: 100%;
+    border: 2px solid black;
+    height: 20px;
+    right: 100px;
+    bottom: 0px;
+    position: absolute;
+    background: black;
+
+
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    border: 2px solid black;
+}
+
+/* For Firefox */
+progress::-moz-progress-bar {
+    background: yellow;
+}
+
+/* For Chrome or Safari */
+progress::-webkit-progress-value {
+    background: yellow;
+}
