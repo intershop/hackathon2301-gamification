@@ -7,6 +7,7 @@ import { OverworldPageComponent } from './pages/overworld-page/overworld-page.co
 import { StartPageComponent } from './pages/start-page/start-page.component';
 import { HudComponent } from './shared/components/hud/hud.component';
 import { QuestItemComponent } from './components/quest-item/quest-item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,12 +15,9 @@ import { QuestItemComponent } from './components/quest-item/quest-item.component
     OverworldPageComponent,
     StartPageComponent,
     HudComponent,
-    QuestItemComponent
+    QuestItemComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
