@@ -15,6 +15,7 @@ import {
   SingleSpaProps,
   singleSpaPropsSubject,
 } from './single-spa/single-spa-props';
+import { spaSettings } from './single-spa/asset-url';
 
 if (environment.production) {
   enableProdMode();
@@ -28,7 +29,8 @@ const lifecycles = singleSpaAngular({
   },
   bootstrapFunction: (singleSpaProps: SingleSpaProps) => {
     singleSpaPropsSubject.next(singleSpaProps);
-    console.log('boot now');
+    spaSettings.baseUrl = singleSpaProps.baseUrl ?? spaSettings.baseUrl;
+    console.log('[dev-cockpit-base]: set baseUrl to ' + spaSettings.baseUrl);
     return platformBrowserDynamic(getSingleSpaExtraProviders()).bootstrapModule(
       AppModule
     );
