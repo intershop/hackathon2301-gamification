@@ -8,7 +8,7 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 In order to be able to connect to the Azure DevOps some configuration values are required.
 * `intershop.ado.organization`: The name of the organization to work with.
 * `intershop.ado.project`: The organization project to used in ADO queries.
-* `intershop.ado.token`: The personal access token to access your companies work items in Azure DevOps.
+* `intershop.ado.token`: The Base64 encoded personal access token to access your companies work items in Azure DevOps.
 
 The values are injected into the service using [Quarkus configuration extension](https://quarkus.io/guides/config-reference). 
 
