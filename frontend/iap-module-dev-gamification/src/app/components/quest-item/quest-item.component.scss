@@ -1,0 +1,26 @@
+$x:150px;
+$y:200px;
+
+.wrapper {
+  width: $x;
+  height: $y;
+  position: relative;
+  background-color: red;
+}
+
+.wrapper .image {
+  position: absolute;
+  top: -25%;
+  left: 75%;
+  right: -25%;
+  bottom: 75%;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  color: white;
+  font-size: large
+}
