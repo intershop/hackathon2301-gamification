@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'PixeloidSans';
+    src: url("http://localhost:10402/assets/fonts/PixeloidSans.ttf");
+}
+
+::ng-deep iap-module-dev-cockpit * {
+    font-family: 'PixeloidSans';
+    margin: 0;
+}
+

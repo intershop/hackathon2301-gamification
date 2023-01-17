@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OverworldPageComponent } from './pages/overworld-page/overworld-page.component';
+import { StartPageComponent } from './pages/start-page/start-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OverworldPageComponent
+    OverworldPageComponent,
+    StartPageComponent
   ],
   imports: [
     BrowserModule,

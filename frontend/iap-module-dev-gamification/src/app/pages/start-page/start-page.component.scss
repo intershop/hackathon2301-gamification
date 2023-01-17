@@ -1,0 +1,71 @@
+#bg-div {
+    background-color: #000;
+}
+
+h1 {
+    font-size: 5rem;
+    color: lightslategray;
+    animation: text-flicker 8s linear infinite;
+}
+
+p {
+    color: #fff;
+    font-size: 2rem;
+}
+
+button {
+    font-size: 3rem;
+    border: none;
+    margin: 0;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+div.flex-column > div {
+    flex-grow: 1;
+}
+
+:host>* {
+    margin: 0;
+    min-height: calc(100vh - 87px);
+}
+
+@keyframes text-flicker {
+    0% {
+      opacity:0.1;
+    }
+    2% {
+      opacity:1;
+    }
+    8% {
+      opacity:0.1;
+    }
+    9% {
+      opacity:1;
+    }
+    12% {
+      opacity:0.1;
+    }
+    20% {
+      opacity:1;
+    }
+    25% {
+      opacity:0.3;
+    }
+    30% {
+      opacity:1;
+    }
+    70% {
+      opacity:0.7;
+    }
+    72% {
+      opacity:0.2;
+    } 
+    77% {
+      opacity:.9;
+    }
+    100% {
+      opacity:.9;
+    }
+  }
