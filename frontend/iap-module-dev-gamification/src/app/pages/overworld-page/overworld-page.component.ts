@@ -4,7 +4,7 @@ import { Quest } from 'src/app/models/quest.model';
 import { QuestsService } from 'src/app/services/quests.service';
 import { UsersService } from 'src/app/services/users.service';
 import { TopicOverview } from 'src/app/models/topic.model';
-
+import { assetUrl } from 'src/single-spa/asset-url';
 @Component({
   selector: 'iap-overworld-page',
   templateUrl: './overworld-page.component.html',
@@ -29,6 +29,10 @@ export class OverworldPageComponent implements OnInit {
   getUsers(): void {
     this.userService.getUsers()
         .subscribe(users => this.users = users);
+  }
+
+  getUrl() {
+    return assetUrl('./background.gif');
   }
 
 }

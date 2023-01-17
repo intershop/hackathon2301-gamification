@@ -1,5 +1,14 @@
-:host>* {
-    margin: 0;
-    min-height: calc(100vh - 87px);
+:host > * {
+  margin: 0;
+  height: calc(100vh - 87px);
+  background-color: black;
 }
 
+.background {
+  display: flex;
+  justify-content:center;
+}
+
+.backgroundImage {
+  max-height: calc(100vh - 87px);
+}
