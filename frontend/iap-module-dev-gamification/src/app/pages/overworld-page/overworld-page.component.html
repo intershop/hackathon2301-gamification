@@ -1,8 +1,15 @@
 <div>
   <iap-hud></iap-hud>
   <div class="background">
-    <div>
-      <Img class="backgroundImage" src="{{ getUrl() }}" />
+    <div style="position: relative">
+      <img class="backgroundImage" src="{{ getUrl() }}" />
+      <iap-quest-item
+        *ngFor="let o of objects"
+        [quests]="quests"
+        [team]="o.team"
+        [pos]="o.pos"
+        [size]="o.size"
+      ></iap-quest-item>
     </div>
   </div>
 </div>

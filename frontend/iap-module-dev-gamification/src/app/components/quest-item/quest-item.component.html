@@ -1,7 +1,19 @@
-<div>
-  <div class="wrapper">
+<div
+  style="position: absolute"
+  [ngStyle]="{
+    top: pos.y + 'px',
+    left: pos.x + 'px',
+    width: size.w + 'px'
+  }"
+>
+  <div
+    class="wrapper"
+    [ngStyle]="{
+      height: size.h + 'px'
+    }"
+  >
     <span class="image">
-      <p class="text">9</p>
+      <p class="text">{{ quests[team]?.length ?? 99 }}</p>
     </span>
   </div>
 </div>

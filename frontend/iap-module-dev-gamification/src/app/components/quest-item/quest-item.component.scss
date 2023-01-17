@@ -1,19 +1,23 @@
-$x:150px;
-$y:200px;
-
 .wrapper {
-  width: $x;
-  height: $y;
   position: relative;
-  background-color: red;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+
+  transition: all 0.5s ease-in-out;
+
 }
 
 .wrapper .image {
   position: absolute;
-  top: -25%;
-  left: 75%;
-  right: -25%;
-  bottom: 75%;
+  top: -25px;
+  right: -25px;
+  width: 50px;
+  height: 50px;
   background-color: #000;
   display: flex;
   justify-content: center;
@@ -23,4 +27,8 @@ $y:200px;
 .text {
   color: white;
   font-size: large
+}
+
+:host {
+  z-index: 1000;
 }
