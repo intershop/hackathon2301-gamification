@@ -84,4 +84,3 @@ Invoke different services through REST with JSON
 Easily start your RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
-
