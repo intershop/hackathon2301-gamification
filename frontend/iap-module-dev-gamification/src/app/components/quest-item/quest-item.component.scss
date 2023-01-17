@@ -2,14 +2,38 @@
   position: relative;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+
+    .image {
+
+
+      -webkit-animation: bounce 1s infinite;
+      animation: bounce 2s infinite;
+
+    }
   }
 
   transition: all 0.5s ease-in-out;
 
+
+}
+
+@keyframes bounce {
+  0% {
+    top: -25px;
+  }
+
+  25%,
+  75% {
+    top: -20px;
+  }
+
+  50% {
+    top: -25px;
+  }
+
+  100% {
+    top: -25px;
+  }
 }
 
 .wrapper .image {
@@ -18,14 +42,14 @@
   right: -25px;
   width: 50px;
   height: 50px;
-  background-color: #000;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .text {
-  color: white;
+  color: black;
   font-size: large
 }
 
