@@ -10,7 +10,7 @@ public class UserListResource
 {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(RestConstants.MEDIA_TYPE_JSON_API)
     public String hello() {
         return "Hey from 'users' resource";
     }

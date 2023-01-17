@@ -5,13 +5,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/quests")
-public class QuestListResource
+@Path("/users/{id}")
+public class UserItemResource
 {
 
     @GET
     @Produces(RestConstants.MEDIA_TYPE_JSON_API)
     public String hello() {
-        return "Hey from 'quests' resource";
+        return "Hey from 'users' item resource";
     }
 }
