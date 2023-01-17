@@ -1,0 +1,49 @@
+greeting:
+  message: "Gamification Server"
+
+quarkus:
+  application:
+    ui-header: Quality Gamification Backend API
+
+  # datasource configuration
+  datasource:
+    jdbc:
+      url: jdbc:h2:mem:default
+      driver: org.h2.Driver
+
+  hibernate-orm:
+    database:
+      generation: update
+
+  # logging configuration
+  log:
+    level: INFO
+
+  default-locale: en-US
+  # supported locales
+  locales: en-US,de-DE,fr-FR
+
+  # OpenAPI and Swagger UI configuration
+  swagger-ui:
+    always-include: true
+    title: Quality Gamification Backend API
+    footer: Intershop Hackathon 2023
+
+# development environment configuration
+"%dev":
+  quarkus:
+    datasource:
+      jdbc:
+        url: jdbc:h2:mem:default
+        driver: org.h2.Driver
+
+    hibernate-orm:
+      database:
+        generation: drop-and-create
+
+    log:
+      category:
+        "com.intershop":
+          level: DEBUG
+      console:
+        json: false
