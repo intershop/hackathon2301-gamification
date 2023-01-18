@@ -46,11 +46,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: rotate(45deg);
 }
 
 .text {
   color: black;
-  font-size: large
+  font-size: large;
+  transform: rotate(-45deg);
 }
 
 :host {
