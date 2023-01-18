@@ -36,7 +36,6 @@ public class QuestListResource
 
     @Inject QuestMapper questMapper;
     @Inject QuestUpdateMapper questUpdateMapper;
-    @Inject TopicMapper topicMapper;
 
     public QuestListResource(QuestRepository questRepository)
     {
@@ -63,7 +62,7 @@ public class QuestListResource
                 quest = questMapper.apply(wi);
                 questRepository.create(quest);
             }
-            var topic = topicMapper.apply(wi);
+            var topic = quest.getTopic();
             Collection<Quest> questsByTopic = questMap.get(topic);
 
             if (questsByTopic == null)

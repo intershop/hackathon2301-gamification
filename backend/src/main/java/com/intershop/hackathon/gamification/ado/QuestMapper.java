@@ -2,6 +2,7 @@ package com.intershop.hackathon.gamification.ado;
 
 import java.util.function.Function;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.azd.common.types.Author;
@@ -14,6 +15,8 @@ import com.intershop.hackathon.gamification.model.Quest;
 @Singleton
 public class QuestMapper implements Function<WorkItem, Quest>
 {
+    @Inject private TopicMapper topicMapper;
+
     @Override public Quest apply(WorkItem workItem)
     {
         if (workItem == null)
@@ -28,6 +31,8 @@ public class QuestMapper implements Function<WorkItem, Quest>
         quest.setAssignedTo(resolveUser(fields.getSystemAssignedTo()));
         quest.setCreatedBy(resolveUser(fields.getSystemCreatedBy()));
         quest.setState(fields.getSystemState());
+        quest.setSeverity((String)fields.getOtherFields().get("Microsoft.VSTS.Common.Severity"));
+        quest.setTopic(topicMapper.apply(workItem));
         return quest;
     }
 

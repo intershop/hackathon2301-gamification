@@ -55,6 +55,8 @@ public class Quest extends PanacheEntityBase
     @Temporal(TemporalType.TIMESTAMP)
     @Column
     private Date closingDate;
+    @Column
+    private String topic;
 
     public Quest()
     {
@@ -129,5 +131,25 @@ public class Quest extends PanacheEntityBase
     public void setClosingDate(Date closingDate)
     {
         this.closingDate = closingDate;
+    }
+
+    public String getSeverity()
+    {
+        return severity;
+    }
+
+    public void setSeverity(String severity)
+    {
+        this.severity = severity;
+    }
+
+    public String getTopic()
+    {
+        return topic;
+    }
+
+    public void setTopic(String topic)
+    {
+        this.topic = topic;
     }
 }
