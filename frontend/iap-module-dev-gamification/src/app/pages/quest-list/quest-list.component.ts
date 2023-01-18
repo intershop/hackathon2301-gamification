@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { Quest } from 'src/app/models/quest.model';
 import { QuestsService } from 'src/app/services/quests.service';
@@ -6,6 +6,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { TopicOverview } from 'src/app/models/topic.model';
 import { map, delay } from 'rxjs/operators';
 import { assetUrl } from 'src/single-spa/asset-url';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'iap-quest-list',
@@ -14,7 +15,7 @@ import { assetUrl } from 'src/single-spa/asset-url';
 })
 export class QuestListComponent implements OnInit {
 
-  team: string = "topic1";
+  team: string = "";
   quests?: Quest[];
   users: User[] = [];
   selectedQuest?: Quest;
@@ -24,11 +25,13 @@ export class QuestListComponent implements OnInit {
   bugImgUrl = assetUrl('/achievements/bug_test.gif');
 
   constructor(
+    private route: ActivatedRoute,
     private questService: QuestsService,
     private userService: UsersService
   ) { }
 
   ngOnInit(): void {
+    this.team = this.route.snapshot.paramMap.get('team') || "";
     this.getQuestsByTeamName(this.team);
     this.getUsers();
   }

@@ -44,6 +44,7 @@ export class QuestItemComponent implements OnInit, AfterContentInit,OnDestroy {
   }
 
   openQuestlist(team: string): void {
+    console.log(team);
     let roomDiv = document.getElementById("room");
     roomDiv!.classList.add("hidden");
     setTimeout(() => {

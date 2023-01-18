@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'dev-cockpit/gamification/map', component: OverworldPageComponent },
   { path: 'dev-cockpit/gamification/profile', component: ProfilePageComponent },
   {
-    path: 'dev-cockpit/gamification/quests/:topic',
+    path: 'dev-cockpit/gamification/quests/:team',
     component: QuestListComponent,
   },
   { path: '**', component: EmptyRouteComponent },
