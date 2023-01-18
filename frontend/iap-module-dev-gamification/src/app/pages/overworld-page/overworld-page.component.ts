@@ -16,57 +16,57 @@ export class OverworldPageComponent implements OnInit {
 
   objects = [
     {
-      team: 'wifi',
+      team: 'IT', // wifi
       pos: { x: 855, y: 157 },
       size: { w: 65, h: 112 },
     },
     {
-      team: 'aquarium',
+      team: 'UX', //aquarium
       pos: { x: 1051, y: 449 },
       size: { w: 299, h: 269 },
     },
     {
-      team: 'printer',
+      team: 'KONSUM', // printer
       pos: { x: 882, y: 567 },
       size: { w: 115, h: 162 },
     },
     {
-      team: 'coffee',
+      team: 'OBI', // coffee
       pos: { x: 611, y: 535 },
       size: { w: 77, h: 143 },
     },
     {
-      team: 'energy',
+      team: 'Phoenix', //energy
       pos: { x: 921, y: 815 },
       size: { w: 72, h: 293 },
     },
     {
-      team: 'mail',
+      team: 'CIA', //mail
       pos: { x: 497, y: 733 },
       size: { w: 102, h: 111 },
     },
     {
-      team: 'radio',
+      team: 'ilmSPIRIT', //radio
       pos: { x: 495, y: 623 },
       size: { w: 94, h: 54 },
     },
     {
-      team: 'clock',
+      team: 'Core', //clock
       pos: { x: 1010, y: 81 },
       size: { w: 160, h: 131 },
     },
     {
-      team: 'cat',
+      team: 'Pac-Man', //cat
       pos: { x: 5, y: 738 },
       size: { w: 128, h: 74 },
     },
     {
-      team: 'qr',
+      team: 'C3PO', //qr
       pos: { x: 181, y: 601 },
       size: { w: 62, h: 79 },
     },
     {
-      team: 'plant',
+      team: 'PWA Rngrx', //plant
       pos: { x: 588, y: 119 },
       size: { w: 82, h: 147 },
     },
@@ -104,5 +104,9 @@ export class OverworldPageComponent implements OnInit {
 
   getUrl() {
     return assetUrl('./background.gif');
+  }
+
+  calculateScreen() {
+return
   }
 }
