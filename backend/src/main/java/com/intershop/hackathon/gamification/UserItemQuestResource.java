@@ -27,8 +27,8 @@ public class UserItemQuestResource
     public Response postUser(@PathParam("id") String email, @Valid WorkItem workItem)
     {
         /*EampleBody: {"id": 82713, "fields": {"System.State": "New"}} */
-        User user = new User(email);
-        user.setEmail(email);
+        User user = new User();
+        user.email = email;
         Optional<WorkItem> workItemUpdated = ado.updateWorkItem(String.valueOf(workItem.getId()), user);
         if (workItemUpdated.isPresent())
         {

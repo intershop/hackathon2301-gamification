@@ -92,7 +92,7 @@ public class AdoClient
             {
                 var workItem = wi.get();
                 var fieldsToUpdate = new HashMap<String, Object>(){{
-                    put("System.AssignedTo", user.getEmail());
+                    put("System.AssignedTo", user.email);
                     put("System.State", "Active");
                 }};
                 workItem = work.updateWorkItem(Integer.parseInt(id), fieldsToUpdate);
