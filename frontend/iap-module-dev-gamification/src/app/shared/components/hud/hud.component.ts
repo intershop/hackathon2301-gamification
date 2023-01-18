@@ -11,23 +11,20 @@ import { assetUrl } from 'src/single-spa/asset-url';
 })
 export class HudComponent implements OnInit {
   user$!: Observable<User>;
+  name: string = '';
+  url: string = '';
+
   constructor(private currentUserService: CurrentUserService) {
     this.user$ = currentUserService.getCurrentUser();
+    this.user$.subscribe((currentUser) => {
+      this.name = currentUser.profile.firstName.toLowerCase();
+    });
+    this.url = `./avatars/${this.name}_avatar.png`;
   }
 
   ngOnInit(): void {}
 
-  findAvatar() {
-    var name = '';
-    this.user$.subscribe((currentUser) => {
-      name = currentUser.profile.firstName.toLowerCase();
-    });
-    return name;
-  }
-
   getUrl() {
-    var firstName = this.findAvatar();
-    var url = `./avatars/${firstName}_avatar.png`;
-    return assetUrl(url);
+    return assetUrl(this.url);
   }
 }
