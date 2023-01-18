@@ -1,41 +1,38 @@
 :host {
-    position: absolute;
-    top: 60px;
-    left: 20px;
+  position: absolute;
+  top: 60px;
+  left: 20px;
 
-    width: 200px;
-    font-size: 24px;
+  width: 200px;
+  font-size: 24px;
 
-    color: white;
-    z-index: 1500;
+  color: white;
+  z-index: 1500;
 }
 
 .level {
-    top: 25px;
+  top: 25px;
 }
 
 progress {
-    width: 100%;
-    border: 2px solid white;
-    height: 20px;
-    background: white;
-
-
+  width: 100%;
+  border: 2px solid white;
+  height: 20px;
+  background: white;
 }
 
 .avatar {
-    width: 100px;
-    height: 100px;
-
-    border: 2px solid white;
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
 }
 
 /* For Firefox */
 progress::-moz-progress-bar {
-    background: yellow;
+  background: #398f91;
 }
 
 /* For Chrome or Safari */
 progress::-webkit-progress-value {
-    background: yellow;
+  background: #398f91;
 }

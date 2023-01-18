@@ -1,5 +1,5 @@
 <div class="hud" [routerLink]="'../profile'">
-  <div class="avatar"></div>
+  <img class="avatar" src="{{ getUrl() }}" />
   <div class="user">{{ (user$ | async)?.profile?.fullName }}</div>
   <div class="level">Thinkerer, Lv 2</div>
   <progress value="3" max="10"></progress>
