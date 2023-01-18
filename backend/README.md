@@ -12,7 +12,7 @@ In order to be able to connect to the Azure DevOps some configuration values are
 
 The values are injected into the service using [Quarkus configuration extension](https://quarkus.io/guides/config-reference). 
 
-You can copy the .env.example to .env and replace the placeholder with your values.
+You can copy the `.env.example` to `.env` and replace the placeholder with your values.
 
 ## Running the application in dev mode
 

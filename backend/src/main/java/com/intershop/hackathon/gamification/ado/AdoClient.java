@@ -1,9 +1,16 @@
 package com.intershop.hackathon.gamification.ado;
 
-import java.util.*;
+import java.util.Base64;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.HashMap;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 
 import org.azd.exceptions.AzDException;
 import org.azd.interfaces.WorkItemTrackingDetails;
@@ -15,6 +22,7 @@ import org.azd.workitemtracking.types.WorkItemReference;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import com.intershop.hackathon.gamification.User;
+import com.intershop.hackathon.gamification.model.Quest;
 
 @ApplicationScoped
 public class AdoClient
@@ -36,11 +44,14 @@ public class AdoClient
         var work = getAdoClient().getWorkItemTrackingApi();
         try {
             WorkItemQueryResult queryResult = work.queryByWiql("",
-                            "Select [System.Id], [System.Title], [System.State] From WorkItems Where [System.WorkItemType] = 'Bug' " + "AND [State] = 'New' order by [Microsoft.VSTS.Common.Priority] asc, [System.CreatedDate] desc");
+                            "SELECT [System.Id] FROM workitems WHERE [System.TeamProject] = @project " +
+                                  "AND [System.WorkItemType] = 'Bug' AND [System.State] = 'New' " +
+                                  "AND [System.Tags] CONTAINS 'hackathon-2023' " +
+                                  "order by [Microsoft.VSTS.Common.Priority] asc, [System.CreatedDate] desc");
 
             int[] wiIDs = queryResult.getWorkItems()
                                      .stream()
-                                     .limit(10) // TODO handle amount of items dynamically
+//                                     .limit(10) // TODO handle amount of items dynamically
                                      .mapToInt(w -> w.getId())
                                      .toArray();
 
@@ -56,11 +67,11 @@ public class AdoClient
         return Collections.emptyList();
     }
 
-    public Optional<WorkItem> getWorkItem(int ticketNumber)
+    public Optional<WorkItem> getWorkItem(String ticketNumber)
     {
         var work = getAdoClient().getWorkItemTrackingApi();
         try {
-            return Optional.of(work.getWorkItem(ticketNumber));
+            return Optional.of(work.getWorkItem(Integer.parseInt(ticketNumber)));
         }
         catch (AzDException e)
         {
@@ -71,6 +82,31 @@ public class AdoClient
         return Optional.empty();
     }
 
+    public Optional<WorkItem> updateWorkItem(String id, User user)
+    {
+        var work = getAdoClient().getWorkItemTrackingApi();
+        try {
+            Optional<WorkItem> wi = getWorkItem(id);
+
+            if (wi.isPresent())
+            {
+                var workItem = wi.get();
+                var fieldsToUpdate = new HashMap<String, Object>(){{
+                    put("System.AssignedTo", user.getEmail());
+                    put("System.State", "Active");
+                }};
+                workItem = work.updateWorkItem(Integer.parseInt(id), fieldsToUpdate);
+
+                return Optional.of(workItem);
+            }
+        }
+        catch (AzDException e)
+        {
+            // TODO error handling
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
 
     protected String getOrganization()
     {
@@ -87,27 +123,27 @@ public class AdoClient
         return project;
     }
 
-    public WorkItem postWorkItem(String email, int workItemID, WorkItem workItemChanged)
-    {
-        WorkItem workItem = null;
-        var work = getAdoClient().getWorkItemTrackingApi();
-        try {
-            var fieldsToUpdate = new HashMap<String, Object>(){{
-                /*put("System.AssignedTo", "test@xmail.com");
-                put("System.AreaPath", "you-team-area-path");*/
-                put("System.State", workItemChanged.getFields().getSystemState()); // New, Active, OnHold
-            }};
-
-            work.updateWorkItem(workItemID, fieldsToUpdate);
-
-            workItem = work.getWorkItem(workItemID);
-
-        }
-        catch (AzDException e)
-        {
-            // TODO error handling
-            e.printStackTrace();
-        }
-        return workItem;
-    }
+//    public WorkItem postWorkItem(String email, int workItemID, WorkItem workItemChanged)
+//    {
+//        WorkItem workItem = null;
+//        var work = getAdoClient().getWorkItemTrackingApi();
+//        try {
+//            var fieldsToUpdate = new HashMap<String, Object>(){{
+//                /*put("System.AssignedTo", "test@xmail.com");
+//                put("System.AreaPath", "you-team-area-path");*/
+//                put("System.State", workItemChanged.getFields().getSystemState()); // New, Active, OnHold
+//            }};
+//
+//            work.updateWorkItem(workItemID, fieldsToUpdate);
+//
+//            workItem = work.getWorkItem(workItemID);
+//
+//        }
+//        catch (AzDException e)
+//        {
+//            // TODO error handling
+//            e.printStackTrace();
+//        }
+//        return workItem;
+//    }
 }
