@@ -21,8 +21,8 @@ public class TopicMapper implements Function<WorkItem, String>
             return null;
         }
         
-        WorkItemFields fields = workItem.getFields();
-        // TODO extract team from IterationPath
-        return "topic1";
+        String itPath = workItem.getFields().getSystemIterationPath();
+        String[] pathSegments = itPath.split("\\\\");
+        return pathSegments.length > 1  ? pathSegments[1] : itPath;
     }
 }

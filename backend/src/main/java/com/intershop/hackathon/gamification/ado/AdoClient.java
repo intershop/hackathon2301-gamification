@@ -45,7 +45,7 @@ public class AdoClient
         try {
             WorkItemQueryResult queryResult = work.queryByWiql("",
                             "SELECT [System.Id] FROM workitems WHERE [System.TeamProject] = @project " +
-                                  "AND [System.WorkItemType] = 'Bug' AND [System.State] = 'New' " +
+//                                  "AND [System.WorkItemType] = 'Bug' AND [System.State] = 'New' " +
                                   "AND [System.Tags] CONTAINS 'hackathon-2023' " +
                                   "order by [Microsoft.VSTS.Common.Priority] asc, [System.CreatedDate] desc");
 
