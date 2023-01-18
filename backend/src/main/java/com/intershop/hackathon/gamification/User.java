@@ -1,67 +1,36 @@
 package com.intershop.hackathon.gamification;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
-public class User
+@Entity
+@Table(name = "questUser")
+public class User extends PanacheEntity
 {
-	private final String username;
-	private String display_name;
+	public String username;
+	public String display_name;
+	public String email;
+	public String achievement_title;
 
-	public String getDisplay_name()
-	{
-		return display_name;
-	}
-
-	public void setDisplay_name(String display_name)
-	{
-		this.display_name = display_name;
-	}
-
-	private String email;
-	private String achievement_title;
-	private List<String> achievements;
+	@ManyToMany
+	public Set<Achievement> achievements = new TreeSet<>();
 
 
 
-	public User(String username)
-	{
 
-		this.username = username;
-		this.achievements = new ArrayList<>();
-	}
 
-	public String getUsername()
-	{
-		return username;
-	}
 
-	public String getEmail()
-	{
-		return email;
-	}
 
-	public void setEmail(String email)
-	{
-		this.email = email;
-	}
 
-	public String getAchievement_title()
-	{
-		return achievement_title;
-	}
-
-	public void setAchievement_title(String achievement_title)
-	{
-		this.achievement_title = achievement_title;
-	}
-
-	public List<String> getAchievements()
-	{
-		return achievements;
-	}
 
 	public void addAchievement(String achievement){
-		this.achievements.add(achievement);
+		this.achievements.add(new Achievement());
 	}
 }

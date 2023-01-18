@@ -76,4 +76,20 @@ public class QuestListResource
 
         return Response.ok(questMap).build();
     }
+
+    User resolveUser(Author author)
+    {
+        if (author != null)
+        {
+            User newUser = new User();
+            newUser.username = author.getUniqueName();
+            return newUser;
+        }
+        return null;
+    }
+
+    private String getTopic(WorkItemFields fields)
+    {
+        return "topic1";
+    }
 }
