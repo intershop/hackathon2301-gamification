@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { LoaderService } from '@intershop/iap-core';
-
+import { assetUrl } from '../single-spa/asset-url';
 @Component({
   selector: 'iap-module-dev-cockpit',
   templateUrl: './app.component.html',
@@ -14,4 +14,5 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     (document.getElementById('a') as HTMLAudioElement).play();
   }
+  assetUrl = assetUrl;
 }
