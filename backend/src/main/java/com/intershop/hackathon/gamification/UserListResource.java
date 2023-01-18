@@ -24,10 +24,10 @@ public class UserListResource
     }
 
     @GET
-    @Path("/{email}")
+    @Path("/{username}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User get(@PathParam("email") String email) {
-        return userRepository.findByEmail(email);
+    public User get(@PathParam("username") String username) {
+        return userRepository.findById(username);
     }
 
     @POST
