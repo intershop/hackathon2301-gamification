@@ -9,6 +9,7 @@ import { StartPageComponent } from './pages/start-page/start-page.component';
 import { HudComponent } from './shared/components/hud/hud.component';
 import { QuestItemComponent } from './components/quest-item/quest-item.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     HudComponent,
     QuestListComponent,
     QuestItemComponent,
+    ProfilePageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

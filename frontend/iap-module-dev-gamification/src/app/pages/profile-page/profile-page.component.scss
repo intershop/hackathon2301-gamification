@@ -1,0 +1,23 @@
+:host>* {
+    margin: 0;
+    height: calc(100vh - 87px);
+    background-color: black;
+
+}
+
+a.back {
+    font-size: 50px;
+    position: absolute;
+    width: 30px;
+    left: -50px;
+    text-decoration: none;
+
+}
+
+.container {
+    position: relative;
+}
+
+h1 {
+    font-size: 66px;
+}

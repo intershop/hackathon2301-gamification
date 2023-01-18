@@ -1,0 +1,14 @@
+<div *ngIf="user$ | async as user" class="row">
+  <div class="container">
+    <a class="back" routerLink="../map">&lt;&lt;</a>
+    <h1>{{ user.display_name }}</h1>
+    <p>
+      <span *ngIf="user.achievement_title">{{ user.achievement_title }}</span>
+      Level 2
+    </p>
+    <h2>Achievements</h2>
+    <div *ngFor="let a of user.achievements">
+      {{ a | json }}
+    </div>
+  </div>
+</div>

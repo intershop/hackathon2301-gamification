@@ -1,4 +1,4 @@
-<div class="hud">
+<div class="hud" [routerLink]="'../profile'">
   <div class="avatar"></div>
   <div class="user">{{ (user$ | async)?.profile?.fullName }}</div>
   <div class="level">Thinkerer, Lv 2</div>

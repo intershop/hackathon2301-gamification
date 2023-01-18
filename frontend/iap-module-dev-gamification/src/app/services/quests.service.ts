@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Quest } from '../models/quest.model';
@@ -23,18 +24,16 @@ export class QuestsService {
     state: 'in progress',
   };
 
-
   QUESTS: Quest[] = [this.firstQuest, this.secondQuest];
 
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   getQuests(): Observable<TopicOverview> {
-    const quests = of({"core":this.QUESTS});
-    return quests;
+    const quests = of({ core: this.QUESTS });
+    return this.httpClient.get<any>('https://10.0.29.131:9443/quests');
   }
 
   addQuest(quest: Quest): void {
     this.QUESTS.push(quest);
   }
-
 }
