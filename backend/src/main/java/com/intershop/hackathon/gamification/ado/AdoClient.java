@@ -1,15 +1,12 @@
 package com.intershop.hackathon.gamification.ado;
 
-import java.util.Base64;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 
 import org.azd.exceptions.AzDException;
+import org.azd.interfaces.WorkItemTrackingDetails;
 import org.azd.utils.AzDClientApi;
 import org.azd.workitemtracking.types.WorkItem;
 import org.azd.workitemtracking.types.WorkItemList;
@@ -88,5 +85,29 @@ public class AdoClient
     protected String getProject()
     {
         return project;
+    }
+
+    public WorkItem postWorkItem(String email, int workItemID, WorkItem workItemChanged)
+    {
+        WorkItem workItem = null;
+        var work = getAdoClient().getWorkItemTrackingApi();
+        try {
+            var fieldsToUpdate = new HashMap<String, Object>(){{
+                /*put("System.AssignedTo", "test@xmail.com");
+                put("System.AreaPath", "you-team-area-path");*/
+                put("System.State", workItemChanged.getFields().getSystemState()); // New, Active, OnHold
+            }};
+
+            work.updateWorkItem(workItemID, fieldsToUpdate);
+
+            workItem = work.getWorkItem(workItemID);
+
+        }
+        catch (AzDException e)
+        {
+            // TODO error handling
+            e.printStackTrace();
+        }
+        return workItem;
     }
 }
