@@ -2,6 +2,7 @@ package com.intershop.hackathon.gamification.orm;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
+import javax.inject.Inject;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -10,6 +11,7 @@ import javax.persistence.Transient;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.intershop.hackathon.gamification.LevelCalculator;
 import com.intershop.hackathon.gamification.orm.Achievement;
 
 @Entity
@@ -26,11 +28,11 @@ public class User extends PanacheEntity
 
 	public String achievement_title;
 
-	@ManyToMany
-	public Set<Achievement> achievements = new TreeSet<>();
-
-	public void addAchievement(String achievement)
-	{
-		this.achievements.add(new Achievement());
-	}
+//	@ManyToMany
+//	public Set<Achievement> achievements = new TreeSet<>();
+//
+//	public void addAchievement(String achievement)
+//	{
+//		this.achievements.add(new Achievement());
+//	}
 }

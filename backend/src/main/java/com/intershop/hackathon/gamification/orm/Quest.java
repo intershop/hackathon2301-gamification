@@ -4,7 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,18 +33,19 @@ public class Quest extends PanacheEntityBase
     @Column(updatable = false)
     private String id;
 
-    @Column //(nullable = false)
+    @Column(nullable = false)
     private String title;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(foreignKey = @ForeignKey(name = "created_by"))
-//    private User createdBy;
-    @Column //(nullable = false)
-    private String createdBy;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(foreignKey = @ForeignKey(name = "assigned_to"))
-//    private User assignedTo;
-@Column private String assignedTo;
-    @Column //(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey(name = "created_by"))
+    private User createdBy;
+//    @Column //(nullable = false)
+//    private String createdBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = @ForeignKey(name = "assigned_to"))
+    private User assignedTo;
+//@Column private String assignedTo;
+    @Column(nullable = false)
     private String state;
     @Column
     private String severity;
@@ -78,22 +83,22 @@ public class Quest extends PanacheEntityBase
         return title;
     }
 
-    public String getCreatedBy()
+    public User getCreatedBy()
     {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy)
+    public void setCreatedBy(User createdBy)
     {
         this.createdBy = createdBy;
     }
 
-    public String getAssignedTo()
+    public User getAssignedTo()
     {
         return assignedTo;
     }
 
-    public void setAssignedTo(String assignedTo)
+    public void setAssignedTo(User assignedTo)
     {
         this.assignedTo = assignedTo;
     }

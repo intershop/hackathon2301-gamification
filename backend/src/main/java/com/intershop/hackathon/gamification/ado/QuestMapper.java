@@ -1,5 +1,6 @@
 package com.intershop.hackathon.gamification.ado;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 import javax.inject.Inject;
@@ -10,11 +11,14 @@ import org.azd.workitemtracking.types.WorkItem;
 import org.azd.workitemtracking.types.WorkItemFields;
 
 import com.intershop.hackathon.gamification.orm.Quest;
+import com.intershop.hackathon.gamification.orm.User;
+import com.intershop.hackathon.gamification.orm.UserRepository;
 
 @Singleton
 public class QuestMapper implements Function<WorkItem, Quest>
 {
     @Inject TopicMapper topicMapper;
+    @Inject UserRepository userRepository;
 
     @Override public Quest apply(WorkItem workItem)
     {
@@ -35,12 +39,16 @@ public class QuestMapper implements Function<WorkItem, Quest>
         return quest;
     }
 
-    private String resolveUser(Author author)
+    private User resolveUser(Author author)
     {
         if (author != null)
         {
-            return author.getUniqueName();
-//            return new User(author.getUniqueName());
+            Optional<User> userOptional = userRepository.findByEmail(author.getUniqueName());
+            if (userOptional.isPresent())
+            {
+                return userOptional.get();
+            }
+            return new User();
         }
         return null;
     }

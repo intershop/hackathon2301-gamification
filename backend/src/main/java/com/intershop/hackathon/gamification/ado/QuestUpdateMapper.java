@@ -1,5 +1,6 @@
 package com.intershop.hackathon.gamification.ado;
 
+import java.util.Optional;
 import java.util.function.BiFunction;
 
 import javax.inject.Inject;
@@ -9,12 +10,17 @@ import org.azd.common.types.Author;
 import org.azd.workitemtracking.types.WorkItem;
 import org.azd.workitemtracking.types.WorkItemFields;
 
+import com.intershop.hackathon.gamification.LevelCalculator;
 import com.intershop.hackathon.gamification.orm.Quest;
+import com.intershop.hackathon.gamification.orm.User;
+import com.intershop.hackathon.gamification.orm.UserRepository;
 
 @Singleton
 public class QuestUpdateMapper implements BiFunction<WorkItem, Quest, Quest>
 {
     @Inject TopicMapper topicMapper;
+    @Inject UserRepository userRepository;
+    @Inject LevelCalculator levelCalculator;
 
     @Override
     public Quest apply(WorkItem workItem, Quest quest)
@@ -33,11 +39,11 @@ public class QuestUpdateMapper implements BiFunction<WorkItem, Quest, Quest>
         return quest;
     }
 
-    private String resolveUser(Author author)
+    private User resolveUser(Author author)
     {
         if (author != null)
         {
-            return author.getUniqueName();
+            return userRepository.findByEmail(author.getUniqueName()).orElse(null);
         }
         return null;
     }

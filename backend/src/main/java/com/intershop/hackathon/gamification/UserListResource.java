@@ -22,7 +22,7 @@ public class UserListResource
     public List<User> getUsers()
     {
         List<User> users = userRepository.findAll().list();
-        users.stream().forEach(u -> updateLevels(u));
+        users.stream().forEach(u -> u.level = levelCalculator.getLevel(u.experience_points));
         return users;
     }
 
@@ -34,17 +34,8 @@ public class UserListResource
         Optional<User> user = userRepository.findByUsername(username);
         if (user.isPresent())
         {
-            return Response.ok(updateLevels(user.get())).build();
+            return Response.ok(user.get()).build();
         }
         return Response.status(404).build();
-    }
-
-    protected User updateLevels(User user)
-    {
-        if (user != null)
-        {
-            user.level = levelCalculator.getLevel(user.experience_points);
-        }
-        return user;
     }
 }
