@@ -1,11 +1,9 @@
-package com.intershop.hackathon.gamification;
+package com.intershop.hackathon.gamification.orm;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 

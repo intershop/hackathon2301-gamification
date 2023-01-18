@@ -6,23 +6,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.HashMap;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.transaction.Transactional;
 
 import org.azd.exceptions.AzDException;
-import org.azd.interfaces.WorkItemTrackingDetails;
 import org.azd.utils.AzDClientApi;
 import org.azd.workitemtracking.types.WorkItem;
-import org.azd.workitemtracking.types.WorkItemList;
 import org.azd.workitemtracking.types.WorkItemQueryResult;
-import org.azd.workitemtracking.types.WorkItemReference;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-import com.intershop.hackathon.gamification.User;
-import com.intershop.hackathon.gamification.model.Quest;
+import com.intershop.hackathon.gamification.orm.User;
 
 @ApplicationScoped
 public class AdoClient

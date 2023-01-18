@@ -1,4 +1,4 @@
-package com.intershop.hackathon.gamification.model;
+package com.intershop.hackathon.gamification.orm;
 
 public class Error
 {

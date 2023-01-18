@@ -2,14 +2,11 @@ package com.intershop.hackathon.gamification;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,9 +19,9 @@ import org.azd.workitemtracking.types.WorkItemFields;
 import com.intershop.hackathon.gamification.ado.AdoClient;
 import com.intershop.hackathon.gamification.ado.QuestMapper;
 import com.intershop.hackathon.gamification.ado.QuestUpdateMapper;
-import com.intershop.hackathon.gamification.ado.TopicMapper;
-import com.intershop.hackathon.gamification.model.Quest;
-import com.intershop.hackathon.gamification.model.QuestRepository;
+import com.intershop.hackathon.gamification.orm.Quest;
+import com.intershop.hackathon.gamification.orm.QuestRepository;
+import com.intershop.hackathon.gamification.orm.User;
 
 @Path("/quests")
 public class QuestListResource

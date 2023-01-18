@@ -1,14 +1,15 @@
 package com.intershop.hackathon.gamification;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
+import com.intershop.hackathon.gamification.orm.User;
+import com.intershop.hackathon.gamification.orm.UserRepository;
 
 @Path("/users")
 public class UserListResource

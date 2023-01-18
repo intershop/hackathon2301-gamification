@@ -1,17 +1,16 @@
-package com.intershop.hackathon.gamification;
+package com.intershop.hackathon.gamification.orm;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-import javax.inject.Inject;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
+import com.intershop.hackathon.gamification.orm.Achievement;
 
 @Entity
 @Table(name = "questUser")

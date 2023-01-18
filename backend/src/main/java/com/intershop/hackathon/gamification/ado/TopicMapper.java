@@ -4,12 +4,7 @@ import java.util.function.Function;
 
 import javax.inject.Singleton;
 
-import org.azd.common.types.Author;
 import org.azd.workitemtracking.types.WorkItem;
-import org.azd.workitemtracking.types.WorkItemFields;
-
-import com.intershop.hackathon.gamification.User;
-import com.intershop.hackathon.gamification.model.Quest;
 
 @Singleton
 public class TopicMapper implements Function<WorkItem, String>

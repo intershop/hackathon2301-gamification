@@ -5,17 +5,17 @@ import java.util.Optional;
 import com.intershop.hackathon.gamification.ado.AdoClient;
 import com.intershop.hackathon.gamification.ado.QuestMapper;
 import com.intershop.hackathon.gamification.ado.QuestUpdateMapper;
-import com.intershop.hackathon.gamification.model.Error;
-import com.intershop.hackathon.gamification.model.Quest;
-import com.intershop.hackathon.gamification.model.QuestRepository;
+import com.intershop.hackathon.gamification.orm.Error;
+import com.intershop.hackathon.gamification.orm.Quest;
+import com.intershop.hackathon.gamification.orm.QuestRepository;
+import com.intershop.hackathon.gamification.orm.User;
+import com.intershop.hackathon.gamification.orm.UserRepository;
 
 import org.azd.workitemtracking.types.WorkItem;
-import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

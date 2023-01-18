@@ -1,19 +1,14 @@
-package com.intershop.hackathon.gamification.model;
+package com.intershop.hackathon.gamification.orm;
 
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import org.azd.common.types.Author;
 import org.azd.workitemtracking.types.WorkItem;
 
-import com.intershop.hackathon.gamification.User;
 import com.intershop.hackathon.gamification.ado.AdoClient;
 import com.intershop.hackathon.gamification.ado.QuestUpdateMapper;
 

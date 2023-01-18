@@ -1,7 +1,6 @@
 package com.intershop.hackathon.gamification.ado;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -10,8 +9,7 @@ import org.azd.common.types.Author;
 import org.azd.workitemtracking.types.WorkItem;
 import org.azd.workitemtracking.types.WorkItemFields;
 
-import com.intershop.hackathon.gamification.User;
-import com.intershop.hackathon.gamification.model.Quest;
+import com.intershop.hackathon.gamification.orm.Quest;
 
 @Singleton
 public class QuestUpdateMapper implements BiFunction<WorkItem, Quest, Quest>

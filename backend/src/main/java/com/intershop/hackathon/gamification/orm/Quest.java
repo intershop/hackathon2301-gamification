@@ -1,14 +1,10 @@
-package com.intershop.hackathon.gamification.model;
+package com.intershop.hackathon.gamification.orm;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,7 +13,6 @@ import javax.persistence.UniqueConstraint;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.intershop.hackathon.gamification.User;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
