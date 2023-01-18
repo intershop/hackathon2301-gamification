@@ -72,7 +72,7 @@ public class QuestRepository implements PanacheRepositoryBase<Quest, String>
             if (workItem.isPresent())
             {
                 quest = questUpdateMapper.apply(workItem.get(), quest);
-//                persist(quest);
+                flush();
             }
         }
         return quest;

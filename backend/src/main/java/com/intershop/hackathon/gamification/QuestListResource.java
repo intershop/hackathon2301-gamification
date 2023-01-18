@@ -41,6 +41,7 @@ public class QuestListResource
     }
 
     @GET
+    @Transactional
     @Produces(RestConstants.MEDIA_TYPE_JSON_API)
     public Response getQuests()
     {
@@ -81,4 +82,6 @@ public class QuestListResource
 
         return Response.ok(questMap).build();
     }
+
+
 }

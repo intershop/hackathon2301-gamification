@@ -78,7 +78,6 @@ public class AdoClient
         return Optional.empty();
     }
 
-    @Transactional
     public Optional<WorkItem> updateWorkItem(String id, User user)
     {
         var work = getAdoClient().getWorkItemTrackingApi();
