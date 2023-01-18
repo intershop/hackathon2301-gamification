@@ -1,0 +1,60 @@
+:host>* {
+    margin: 0;
+    min-height: calc(100vh - 87px);
+}
+
+#quest-list {
+    background: #000;
+    position: relative;
+}
+
+#quest-list > button {
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+}
+
+#calendar {
+    background-color: #398F91;
+    min-height: calc(100vh - 87px);
+}
+
+#calendar-detail {
+    border: 6px solid #027368;
+    padding: .5rem;
+}
+
+#calendar-overview {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    gap: .5rem;
+}
+
+#calendar-sheet {
+    flex-basis: 100%;
+    padding: 1rem;
+    gap: 10px;
+    position: relative;
+}
+
+#calendar-sheet > div {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+#calendar-overview > div {
+    border: 4px solid #027368;
+    padding: .25rem;
+}
+
+button {
+    position: absolute;
+    width: 150px;
+    left: -170px;
+    font-size: 1.5rem;
+    border: none;
+    margin: 0;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
