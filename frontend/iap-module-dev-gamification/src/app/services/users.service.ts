@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -31,9 +32,11 @@ export class UsersService {
   getUser(name: string): Observable<User> {
     //TO DO: search for the user by email
     //return the user
-    return this.httpClient.get<any>(
-      'https://10.0.29.131:9443/users/' +
-        name.toLocaleLowerCase().replace(' ', '_').replace('ß', 'ss')
-    );
+    return this.httpClient
+      .get<any>(
+        'https://10.0.29.131:9443/users/' +
+          name.toLocaleLowerCase().replace(' ', '_').replace('ß', 'ss')
+      )
+      .pipe(tap((a: any) => (a.display_name = name)));
   }
 }

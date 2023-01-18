@@ -1,5 +1,5 @@
-<div *ngIf="user$ | async as user" class="row">
-  <div class="container">
+<div class="row">
+  <div class="container" *ngIf="user$ | async as user">
     <a class="back" routerLink="../map">&lt;&lt;</a>
     <h1>{{ user.display_name }}</h1>
     <p>

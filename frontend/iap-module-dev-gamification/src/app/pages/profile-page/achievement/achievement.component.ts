@@ -13,4 +13,24 @@ export class AchievementComponent implements OnInit {
 
   assetUrl = assetUrl;
   ngOnInit(): void {}
+  getImg() {
+    switch (this.achievement) {
+      case 'Debugger':
+        return assetUrl('achievements/bug_test.gif');
+      case 'Self Sustained':
+        return assetUrl('achievements/bug_test.gif');
+      case 'Peace Was No Decision':
+        return assetUrl('achievements/bug_test.gif');
+      case 'Lucky Luke':
+        return assetUrl('achievements/bug_test.gif');
+      case 'No Hurry':
+        return assetUrl('achievements/bug_test.gif');
+      case 'Firefighter':
+        return assetUrl('achievements/bug_test.gif');
+      case 'Street':
+        return assetUrl('achievements/bug_test.gif');
+      default:
+        return '';
+    }
+  }
 }
