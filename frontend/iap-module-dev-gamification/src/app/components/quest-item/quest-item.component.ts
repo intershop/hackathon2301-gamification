@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { TopicOverview } from '../../models/topic.model';
 
 @Component({
@@ -6,7 +6,7 @@ import { TopicOverview } from '../../models/topic.model';
   templateUrl: './quest-item.component.html',
   styleUrls: ['./quest-item.component.scss'],
 })
-export class QuestItemComponent implements OnInit {
+export class QuestItemComponent implements OnInit, AfterContentInit {
   @Input()
   quests!: TopicOverview;
   @Input()
@@ -16,7 +16,21 @@ export class QuestItemComponent implements OnInit {
   @Input()
   size!: { w: number; h: number };
 
+  currentBgWitdh!: number;
+  currentBgHeight!: number;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setInterval(() => {
+      this.updateBgSizes();
+    });
+  }
+  ngAfterContentInit(): void {
+    this.updateBgSizes();
+  }
+  updateBgSizes() {
+    const img = document.querySelector('.backgroundImage') as any;
+    this.currentBgWitdh = img.width ?? 100;
+    this.currentBgHeight = img.height ?? 100;
+  }
 }

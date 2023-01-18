@@ -1,16 +1,16 @@
 <div
   style="position: absolute"
   [ngStyle]="{
-    top: pos.y + 'px',
-    left: pos.x + 'px',
-    width: size.w + 'px'
+    top: pos.y * (currentBgHeight / 969) + 'px',
+    left: pos.x * (currentBgWitdh / 1351) + 'px',
+    width: size.w * (currentBgWitdh / 1351) + 'px'
   }"
 >
   <div
     class="wrapper"
-    [routerLink]="'../quests/'+team"
+    [routerLink]="'../quests/' + team"
     [ngStyle]="{
-      height: size.h + 'px'
+      height: size.h * (currentBgHeight / 969) + 'px'
     }"
   >
     {{ team }}
