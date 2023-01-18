@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 import javax.inject.Inject;
@@ -20,6 +21,7 @@ import org.azd.workitemtracking.types.WorkItemFields;
 
 import com.intershop.hackathon.gamification.ado.AdoClient;
 import com.intershop.hackathon.gamification.ado.QuestMapper;
+import com.intershop.hackathon.gamification.ado.QuestUpdateMapper;
 import com.intershop.hackathon.gamification.ado.TopicMapper;
 import com.intershop.hackathon.gamification.model.Quest;
 import com.intershop.hackathon.gamification.model.QuestRepository;
@@ -33,6 +35,7 @@ public class QuestListResource
     AdoClient ado;
 
     @Inject QuestMapper questMapper;
+    @Inject QuestUpdateMapper questUpdateMapper;
     @Inject TopicMapper topicMapper;
 
     public QuestListResource(QuestRepository questRepository)
@@ -49,7 +52,17 @@ public class QuestListResource
         Collection<WorkItem> workItems = ado.getWorkItems();
         for (WorkItem wi: workItems)
         {
-            var quest = questMapper.apply(wi);
+            Optional<Quest> questOpt = questRepository.findByIdOptional(String.valueOf(wi.getId()));
+            Quest quest;
+            if (questOpt.isPresent()) // TODO extract DB change from GET
+            {
+                quest = questUpdateMapper.apply(wi, questOpt.get());
+            }
+            else
+            {
+                quest = questMapper.apply(wi);
+                questRepository.create(quest);
+            }
             var topic = topicMapper.apply(wi);
             Collection<Quest> questsByTopic = questMap.get(topic);
 
@@ -59,11 +72,8 @@ public class QuestListResource
                 questMap.put(topic, questsByTopic);
             }
             questsByTopic.add(quest);
-            questRepository.create(quest);
         }
 
         return Response.ok(questMap).build();
     }
-
-
 }

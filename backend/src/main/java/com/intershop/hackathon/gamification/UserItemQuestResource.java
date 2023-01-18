@@ -28,6 +28,7 @@ public class UserItemQuestResource
     {
         /*EampleBody: {"id": 82713, "fields": {"System.State": "New"}} */
         User user = new User(email);
+        user.setEmail(email);
         Optional<WorkItem> workItemUpdated = ado.updateWorkItem(String.valueOf(workItem.getId()), user);
         if (workItemUpdated.isPresent())
         {

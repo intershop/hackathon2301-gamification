@@ -22,21 +22,19 @@ public class QuestUpdateMapper implements BiFunction<WorkItem, Quest, Quest>
         {
             WorkItemFields fields = workItem.getFields();
             quest.setTitle(workItem.getFields().getSystemTitle());
-            quest.setAssignedTo(fields.getSystemAssignedTo().getUniqueName());
-            quest.setCreatedBy(fields.getSystemCreatedBy().getUniqueName());
-            //        quest.setAssignedTo(resolveUser(fields.getSystemAssignedTo()));
-            //        quest.setCreatedBy(resolveUser(fields.getSystemCreatedBy()));
+                    quest.setAssignedTo(resolveUser(fields.getSystemAssignedTo()));
+                    quest.setCreatedBy(resolveUser(fields.getSystemCreatedBy()));
             quest.setState(fields.getSystemState());
         }
 
         return quest;
     }
 
-    private User resolveUser(Author author)
+    private String resolveUser(Author author)
     {
         if (author != null)
         {
-            return new User(author.getUniqueName());
+            return author.getUniqueName();
         }
         return null;
     }
