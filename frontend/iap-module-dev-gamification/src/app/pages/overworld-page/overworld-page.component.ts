@@ -38,7 +38,7 @@ export class OverworldPageComponent implements OnInit {
     {
       team: 'Phoenix', //energy
       pos: { x: 921, y: 815 },
-      size: { w: 72, h: 293 },
+      size: { w: 72, h: 152 },
     },
     {
       team: 'CIA', //mail

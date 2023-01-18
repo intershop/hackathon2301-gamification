@@ -2,19 +2,13 @@
   position: relative;
 
   &:hover {
-
     .image {
-
-
       -webkit-animation: bounce 1s infinite;
       animation: bounce 2s infinite;
-
     }
   }
 
   transition: all 0.5s ease-in-out;
-
-
 }
 
 @keyframes bounce {
@@ -53,6 +47,11 @@
   color: black;
   font-size: large;
   transform: rotate(-45deg);
+}
+.teamText{
+  color: white;
+  position: absolute;
+  bottom: 0px;
 }
 
 :host {
