@@ -1,47 +1,49 @@
 package com.intershop.hackathon.gamification;
 
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
-
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Path("/users")
 public class UserListResource
 {
-    @Inject
-    public UserRepository userRepository;
-
-    public UserListResource()
-    {
-
-    }
+    @Inject UserRepository userRepository;
+    @Inject LevelCalculator levelCalculator;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
-    public List<User> all() {
-        return userRepository.findAll();
+    public List<User> getUsers()
+    {
+        List<User> users = userRepository.findAll().list();
+        users.stream().forEach(u -> updateLevels(u));
+        return users;
     }
 
     @GET
     @Path("/{username}")
-    @Transactional
     @Produces(MediaType.APPLICATION_JSON)
-    public User get(@PathParam("username") String username) {
-        return userRepository.findById(username);
+    public Response get(@PathParam("username") String username)
+    {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent())
+        {
+            return Response.ok(updateLevels(user.get())).build();
+        }
+        return Response.status(404).build();
     }
 
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public User post(User user) {
-        return userRepository.insert(
-                new User()
-        );
+    protected User updateLevels(User user)
+    {
+        if (user != null)
+        {
+            user.level = levelCalculator.getLevel(user.experience_points);
+        }
+        return user;
     }
 }

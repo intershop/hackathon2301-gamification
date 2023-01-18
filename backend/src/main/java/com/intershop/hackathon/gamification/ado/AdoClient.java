@@ -45,13 +45,11 @@ public class AdoClient
         try {
             WorkItemQueryResult queryResult = work.queryByWiql("",
                             "SELECT [System.Id] FROM workitems WHERE [System.TeamProject] = @project " +
-//                                  "AND [System.WorkItemType] = 'Bug' AND [System.State] = 'New' " +
                                   "AND [System.Tags] CONTAINS 'hackathon-2023' " +
                                   "order by [Microsoft.VSTS.Common.Priority] asc, [System.CreatedDate] desc");
 
             int[] wiIDs = queryResult.getWorkItems()
                                      .stream()
-//                                     .limit(10) // TODO handle amount of items dynamically
                                      .mapToInt(w -> w.getId())
                                      .toArray();
 
@@ -67,11 +65,11 @@ public class AdoClient
         return Collections.emptyList();
     }
 
-    public Optional<WorkItem> getWorkItem(String ticketNumber)
+    public Optional<WorkItem> getWorkItem(int ticketNumber)
     {
         var work = getAdoClient().getWorkItemTrackingApi();
         try {
-            return Optional.of(work.getWorkItem(Integer.parseInt(ticketNumber)));
+            return Optional.of(work.getWorkItem(ticketNumber));
         }
         catch (AzDException e)
         {
@@ -81,8 +79,12 @@ public class AdoClient
 
         return Optional.empty();
     }
+    public Optional<WorkItem> getWorkItem(String ticketNumber)
+    {
+        return getWorkItem(Integer.parseInt(ticketNumber));
+    }
 
-    public Optional<WorkItem> updateWorkItem(String id, User user)
+    public Optional<WorkItem> updateWorkItem(int id, User user)
     {
         var work = getAdoClient().getWorkItemTrackingApi();
         try {
@@ -95,7 +97,7 @@ public class AdoClient
                     put("System.AssignedTo", user.email);
                     put("System.State", "Active");
                 }};
-                workItem = work.updateWorkItem(Integer.parseInt(id), fieldsToUpdate);
+                workItem = work.updateWorkItem(id, fieldsToUpdate);
 
                 return Optional.of(workItem);
             }
@@ -106,6 +108,11 @@ public class AdoClient
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+
+    public Optional<WorkItem> updateWorkItem(String id, User user)
+    {
+        return updateWorkItem(Integer.parseInt(id), user);
     }
 
     protected String getOrganization()

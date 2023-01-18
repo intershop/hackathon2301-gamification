@@ -15,7 +15,7 @@ import com.intershop.hackathon.gamification.model.Quest;
 @Singleton
 public class QuestMapper implements Function<WorkItem, Quest>
 {
-    @Inject private TopicMapper topicMapper;
+    @Inject TopicMapper topicMapper;
 
     @Override public Quest apply(WorkItem workItem)
     {
