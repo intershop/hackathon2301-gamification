@@ -1,4 +1,3 @@
-import { LowerCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CurrentUserService, User } from '@intershop/iap-core';
 import { Observable } from 'rxjs';
