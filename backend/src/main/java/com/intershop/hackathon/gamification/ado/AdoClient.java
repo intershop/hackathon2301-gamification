@@ -3,11 +3,14 @@ package com.intershop.hackathon.gamification.ado;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.transaction.Transactional;
 
 import org.azd.exceptions.AzDException;
 import org.azd.utils.AzDClientApi;
@@ -18,6 +21,7 @@ import org.azd.workitemtracking.types.WorkItemReference;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import com.intershop.hackathon.gamification.User;
+import com.intershop.hackathon.gamification.model.Quest;
 
 @ApplicationScoped
 public class AdoClient
@@ -59,11 +63,11 @@ public class AdoClient
         return Collections.emptyList();
     }
 
-    public Optional<WorkItem> getWorkItem(int ticketNumber)
+    public Optional<WorkItem> getWorkItem(String ticketNumber)
     {
         var work = getAdoClient().getWorkItemTrackingApi();
         try {
-            return Optional.of(work.getWorkItem(ticketNumber));
+            return Optional.of(work.getWorkItem(Integer.parseInt(ticketNumber)));
         }
         catch (AzDException e)
         {
@@ -74,6 +78,32 @@ public class AdoClient
         return Optional.empty();
     }
 
+    @Transactional
+    public Optional<WorkItem> updateWorkItem(String id, User user)
+    {
+        var work = getAdoClient().getWorkItemTrackingApi();
+        try {
+            Optional<WorkItem> wi = getWorkItem(id);
+
+            if (wi.isPresent())
+            {
+                var workItem = wi.get();
+                var fieldsToUpdate = new HashMap<String, Object>(){{
+                    put("System.AssignedTo", user.getEmail());
+                    put("System.State", "Active");
+                }};
+                workItem = work.updateWorkItem(Integer.parseInt(id), fieldsToUpdate);
+
+                return Optional.of(workItem);
+            }
+        }
+        catch (AzDException e)
+        {
+            // TODO error handling
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
 
     protected String getOrganization()
     {
