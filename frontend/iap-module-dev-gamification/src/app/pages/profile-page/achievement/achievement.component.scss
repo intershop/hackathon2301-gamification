@@ -1,0 +1,16 @@
+.achievement {
+    position: relative;
+    width: 100px;
+    height: 100px;
+
+    >img {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+
+        &.icon {
+            top: 25px;
+            left: 25px;
+        }
+    }
+}

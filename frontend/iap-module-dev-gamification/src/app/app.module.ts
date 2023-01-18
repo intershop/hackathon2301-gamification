@@ -10,6 +10,7 @@ import { HudComponent } from './shared/components/hud/hud.component';
 import { QuestItemComponent } from './components/quest-item/quest-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { AchievementComponent } from './pages/profile-page/achievement/achievement.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
     QuestListComponent,
     QuestItemComponent,
     ProfilePageComponent,
+    AchievementComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

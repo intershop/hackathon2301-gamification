@@ -1,4 +1,5 @@
 <div
+  *ngIf="quests[team]"
   style="position: absolute"
   [ngStyle]="{
     top: pos.y * (currentBgHeight / 969) + 'px',
@@ -15,7 +16,7 @@
   >
     <p class="teamText">{{ team }}</p>
     <span class="image">
-      <p class="text">{{ quests[team]?.length ?? 99 }}</p>
+      <p class="text">{{ quests[team]?.length }}</p>
     </span>
   </div>
 </div>
