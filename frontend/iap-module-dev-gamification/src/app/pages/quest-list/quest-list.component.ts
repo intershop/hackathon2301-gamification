@@ -4,7 +4,8 @@ import { Quest } from 'src/app/models/quest.model';
 import { QuestsService } from 'src/app/services/quests.service';
 import { UsersService } from 'src/app/services/users.service';
 import { TopicOverview } from 'src/app/models/topic.model';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
+import { assetUrl } from 'src/single-spa/asset-url';
 
 @Component({
   selector: 'iap-quest-list',
@@ -18,6 +19,9 @@ export class QuestListComponent implements OnInit {
   users: User[] = [];
   selectedQuest?: Quest;
 
+  assetUrl = assetUrl;
+
+  bugImgUrl = assetUrl('/achievements/bug_test.gif');
 
   constructor(
     private questService: QuestsService,
@@ -30,8 +34,13 @@ export class QuestListComponent implements OnInit {
   }
 
   getQuestsByTeamName(team: string): void {
-    this.questService.getQuests().pipe(map(questsMap => questsMap[team])).subscribe((questsArray) => { 
+    document.getElementById("loadingBug")?.classList.remove("d-none");
+    this.questService.getQuests().pipe(
+        map(questsMap => questsMap[team]),
+        delay(1700)
+      ).subscribe((questsArray) => { 
       (this.quests = questsArray);
+      document.getElementById("loadingBug")?.classList.add("d-none");
       console.log(this.quests);
     });
   }
@@ -39,11 +48,12 @@ export class QuestListComponent implements OnInit {
   showQuestDetail(questId: number) {
     this.selectedQuest = this.quests?.find((quest) => quest.id == questId);
     console.log(this.selectedQuest);
-    
+
   }
 
   getUsers(): void {
     this.userService.getUsers().subscribe((users) => (this.users = users));
   }
+
 
 }

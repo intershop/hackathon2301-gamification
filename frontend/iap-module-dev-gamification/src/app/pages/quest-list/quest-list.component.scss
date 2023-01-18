@@ -3,6 +3,25 @@
     min-height: calc(100vh - 87px);
 }
 
+#loadingBug {
+    animation: slidein 4s linear infinite;
+    position: absolute;
+    transform: rotate(90deg);
+    top: calc(50vh - 87px);
+}
+
+@keyframes slidein {
+    0% {
+        left: 0;
+      }
+      50% {
+        left: 95%;
+      }
+      100% {
+        left: 0;    
+      }
+  }
+
 #quest-list {
     background: #000;
     position: relative;
@@ -49,7 +68,8 @@
     color: white;
 
     &.active {
-        background-color: yellow;
+        background-color: #30D99B;
+        color: #003A55;
     }
 }
 
