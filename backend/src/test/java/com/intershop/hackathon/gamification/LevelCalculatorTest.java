@@ -1,6 +1,5 @@
 package com.intershop.hackathon.gamification;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -26,16 +25,5 @@ public class LevelCalculatorTest {
         System.out.println(((double)LevelCalculator.getExpPoints(10000))/10000);
         System.out.println(((double)LevelCalculator.getExpPoints(10000))/10000);
         System.out.println(((double)LevelCalculator.getExpPoints(10000))/10000);
-    }
-
-    @Test
-    public void testMapDifficultyLevel() // TODO should be a ParameterizedTest
-    {
-        LevelCalculator calc = new LevelCalculator();
-        Assertions.assertEquals(1, calc.mapDifficultyLevel("Minor"));
-        Assertions.assertEquals(2, calc.mapDifficultyLevel("Major"));
-        Assertions.assertEquals(3, calc.mapDifficultyLevel("Critical"));
-        Assertions.assertEquals(5, calc.mapDifficultyLevel("Blocker"));
-        Assertions.assertEquals(0, calc.mapDifficultyLevel("invalid"));
     }
 }

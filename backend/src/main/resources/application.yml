@@ -13,7 +13,7 @@ quarkus:
 
   hibernate-orm:
     database:
-      generation: drop-and-create
+      generation: update
 
   # logging configuration
   log:
