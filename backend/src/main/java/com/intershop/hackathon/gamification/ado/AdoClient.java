@@ -12,9 +12,12 @@ import javax.enterprise.context.ApplicationScoped;
 import org.azd.exceptions.AzDException;
 import org.azd.utils.AzDClientApi;
 import org.azd.workitemtracking.types.WorkItem;
+import org.azd.workitemtracking.types.WorkItemList;
 import org.azd.workitemtracking.types.WorkItemQueryResult;
 import org.azd.workitemtracking.types.WorkItemReference;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+
+import com.intershop.hackathon.gamification.User;
 
 @ApplicationScoped
 public class AdoClient
@@ -28,17 +31,23 @@ public class AdoClient
 
     public AzDClientApi getAdoClient()
     {
-        return new AzDClientApi(organisation, project, personalAccessToken);
+        return new AzDClientApi(organisation, project, getPersonalAccessToken());
     }
 
-    public Collection<WorkItemReference> getWorkItems()
+    public Collection<WorkItem> getWorkItems()
     {
         var work = getAdoClient().getWorkItemTrackingApi();
         try {
             WorkItemQueryResult queryResult = work.queryByWiql("",
                             "Select [System.Id], [System.Title], [System.State] From WorkItems Where [System.WorkItemType] = 'Bug' " + "AND [State] = 'New' order by [Microsoft.VSTS.Common.Priority] asc, [System.CreatedDate] desc");
 
-            List<WorkItemReference> workItems = queryResult.getWorkItems().stream().collect(Collectors.toList());
+            int[] wiIDs = queryResult.getWorkItems()
+                                     .stream()
+                                     .limit(10) // TODO handle amount of items dynamically
+                                     .mapToInt(w -> w.getId())
+                                     .toArray();
+
+            List<WorkItem> workItems = work.getWorkItems(wiIDs).getWorkItems();
             return workItems;
         }
         catch (AzDException e)
@@ -64,6 +73,7 @@ public class AdoClient
 
         return Optional.empty();
     }
+
 
     protected String getOrganization()
     {

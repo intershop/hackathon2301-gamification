@@ -3,24 +3,25 @@ package com.intershop.hackathon.gamification.model;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.intershop.hackathon.gamification.User;
 
 @Schema(description = "A quest to be solved.")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class QuestRO
 {
-    private String id;
+    private int id;
     private String title;
-    private UserRO createdBy;
-    private UserRO assignedTo;
+    private User createdBy;
+    private User assignedTo;
     private String state;
 
-    public QuestRO(String id, String title)
+    public QuestRO(int id, String title)
     {
         this.id = id;
         this.title = title;
     }
 
-    public String getId()
+    public int getId()
     {
         return id;
     }
@@ -30,22 +31,22 @@ public class QuestRO
         return title;
     }
 
-    public UserRO getCreatedBy()
+    public User getCreatedBy()
     {
         return createdBy;
     }
 
-    public void setCreatedBy(UserRO createdBy)
+    public void setCreatedBy(User createdBy)
     {
         this.createdBy = createdBy;
     }
 
-    public UserRO getAssignedTo()
+    public User getAssignedTo()
     {
         return assignedTo;
     }
 
-    public void setAssignedTo(UserRO assignedTo)
+    public void setAssignedTo(User assignedTo)
     {
         this.assignedTo = assignedTo;
     }
