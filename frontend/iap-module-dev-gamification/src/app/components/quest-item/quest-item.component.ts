@@ -48,7 +48,7 @@ export class QuestItemComponent implements OnInit, AfterContentInit,OnDestroy {
     roomDiv!.classList.add("hidden");
     setTimeout(() => {
       this.router.navigate(['../quests/', team], { relativeTo: this.route });
-    }, 1000);
+    }, 2000);
   }
   ngOnDestroy(): void {
     clearInterval(this.bgSizesInterval);
