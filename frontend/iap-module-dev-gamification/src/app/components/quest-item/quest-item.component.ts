@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TopicOverview } from '../../models/topic.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './quest-item.component.html',
   styleUrls: ['./quest-item.component.scss'],
 })
-export class QuestItemComponent implements OnInit, AfterContentInit {
+export class QuestItemComponent implements OnInit, AfterContentInit,OnDestroy {
   @Input()
   quests!: TopicOverview;
   @Input()
@@ -16,6 +16,8 @@ export class QuestItemComponent implements OnInit, AfterContentInit {
   pos!: { x: number; y: number };
   @Input()
   size!: { w: number; h: number };
+
+  private bgSizesInterval: any;
 
   currentBgWitdh!: number;
   currentBgHeight!: number;
@@ -26,7 +28,7 @@ export class QuestItemComponent implements OnInit, AfterContentInit {
   ) {}
 
   ngOnInit(): void {
-    setInterval(() => {
+    this.bgSizesInterval = setInterval(() => {
       this.updateBgSizes();
     });
   }
@@ -35,8 +37,10 @@ export class QuestItemComponent implements OnInit, AfterContentInit {
   }
   updateBgSizes() {
     const img = document.querySelector('.backgroundImage') as any;
-    this.currentBgWitdh = img.width ?? 100;
-    this.currentBgHeight = img.height ?? 100;
+    if (img) {
+      this.currentBgWitdh = img.width ?? 100;
+      this.currentBgHeight = img.height ?? 100;
+    }
   }
 
   openQuestlist(team: string): void {
@@ -44,6 +48,9 @@ export class QuestItemComponent implements OnInit, AfterContentInit {
     roomDiv!.classList.add("hidden");
     setTimeout(() => {
       this.router.navigate(['../quests/', team], { relativeTo: this.route });
-    }, 2000);
+    }, 1000);
+  }
+  ngOnDestroy(): void {
+    clearInterval(this.bgSizesInterval);
   }
 }
