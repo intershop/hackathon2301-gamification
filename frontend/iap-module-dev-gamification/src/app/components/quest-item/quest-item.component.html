@@ -8,7 +8,7 @@
 >
   <div
     class="wrapper"
-    [routerLink]="'../quests/' + team"
+    (click)="openQuestlist(this.team)"
     [ngStyle]="{
       height: size.h * (currentBgHeight / 969) + 'px'
     }"

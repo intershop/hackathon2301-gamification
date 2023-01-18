@@ -1,7 +1,7 @@
 <div>
   <iap-hud></iap-hud>
   <div class="background">
-    <div style="position: relative">
+    <div id="room" style="position: relative">
       <img class="backgroundImage" src="{{ getUrl() }}" />
       <iap-quest-item
         *ngFor="let o of objects"

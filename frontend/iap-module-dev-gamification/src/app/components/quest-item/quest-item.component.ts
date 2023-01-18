@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, Input, OnInit } from '@angular/core';
 import { TopicOverview } from '../../models/topic.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'iap-quest-item',
@@ -18,7 +19,11 @@ export class QuestItemComponent implements OnInit, AfterContentInit {
 
   currentBgWitdh!: number;
   currentBgHeight!: number;
-  constructor() {}
+  
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     setInterval(() => {
@@ -32,5 +37,13 @@ export class QuestItemComponent implements OnInit, AfterContentInit {
     const img = document.querySelector('.backgroundImage') as any;
     this.currentBgWitdh = img.width ?? 100;
     this.currentBgHeight = img.height ?? 100;
+  }
+
+  openQuestlist(team: string): void {
+    let roomDiv = document.getElementById("room");
+    roomDiv!.classList.add("hidden");
+    setTimeout(() => {
+      this.router.navigate(['../quests/', team], { relativeTo: this.route });
+    }, 2000);
   }
 }
