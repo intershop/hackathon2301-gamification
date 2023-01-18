@@ -16,7 +16,7 @@ export class OverworldPageComponent implements OnInit {
 
   objects = [
     {
-      team: 'IT', // wifi
+      team: 'topic1', // wifi
       pos: { x: 855, y: 157 },
       size: { w: 65, h: 112 },
     },

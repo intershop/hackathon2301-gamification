@@ -5,25 +5,17 @@
             <div id="calendar-sheet" class="d-flex flex-column flex-wrap">
                 <a class="back" [routerLink]="['../../map']">&lt;&lt;</a>
                 <div id="calendar-detail" class="d-flex">
-                    <h1>Quest Title</h1>
+                    <div *ngIf="selectedQuest">
+                        <h1>{{ selectedQuest.title }}</h1>
+                        <p>{{ selectedQuest.createdBy.username }}</p>
+                        <span class="badge-new">{{ selectedQuest.state }}</span>
+                    </div>
                 </div>
-                <div id="calendar-overview" class="d-grid">
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
-                    <div>Test</div>
+                <div *ngIf="quests" id="calendar-overview" class="d-grid">
+                    <div *ngFor="let quest of quests" (click)="showQuestDetail(quest.id)" [ngClass]="quest.id == selectedQuest?.id ? 'active' : ''">
+                        <p>{{ quest.id }}</p>
+                        <p>{{ quest.title }}</p>
+                    </div>
                 </div>
             </div>
         </div>

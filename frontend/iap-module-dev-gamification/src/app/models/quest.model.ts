@@ -1,7 +1,7 @@
 export interface Quest {
   id: number;
   title: string;
-  createdBy: string;
-  assignedTo: string;
+  createdBy: any;
+  assignedTo: any;
   state: string;
 }
