@@ -37,6 +37,7 @@ public class QuestItemResource
     @GET
     @Produces(RestConstants.MEDIA_TYPE_JSON_API)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response getQuest(@PathParam("id") String id)
     {
         Optional<WorkItem> workItemOptional = ado.getWorkItem(id);

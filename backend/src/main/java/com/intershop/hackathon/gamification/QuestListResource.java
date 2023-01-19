@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -42,6 +43,7 @@ public class QuestListResource
 
     @GET
     @Produces(RestConstants.MEDIA_TYPE_JSON_API)
+    @Transactional
     public Response getQuests()
     {
         Map<String, Collection<Quest>> questMap = new HashMap<>();

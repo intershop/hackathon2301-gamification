@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import org.azd.workitemtracking.types.WorkItem;
 
@@ -20,23 +21,19 @@ public class QuestUpdater
     @Inject AdoClient ado;
     @Inject QuestRepository questRepository;
     @Inject QuestUpdateMapper questUpdateMapper;
-    LevelCalculator levelCalculator = new LevelCalculator();
 
     public void checkForStatusUpdates()
     {
-        List<Quest> questList = questRepository.findAll().list();
+        List<Quest> questList = questRepository.getQuestsByState("New", "Active");
 
         for (Quest quest: questList)
         {
-            if (!"Closed".equals(quest.getState())) // TODO filter in repo
-            {
-                Optional<WorkItem> workItemOptional = ado.getWorkItem(quest.getId());
-
-                updateQuest(quest, workItemOptional.orElse(null));
-            }
+            Optional<WorkItem> workItemOptional = ado.getWorkItem(quest.getId());
+            updateQuest(quest, workItemOptional.orElse(null));
         }
     }
 
+    @Transactional
     public Quest updateQuest(Quest quest, WorkItem workItem)
     {
         if (workItem != null)
@@ -54,7 +51,7 @@ public class QuestUpdater
         if ("Closed".equals(quest.getState()) && !previousState.equals(quest.getState()))
         {
             int claimedPoints = LevelCalculator.getExpPoints(
-                levelCalculator.mapDifficultyLevel(quest.getSeverity())
+                LevelCalculator.mapDifficultyLevel(quest.getSeverity())
             );
 
             User assignedTo = quest.getAssignedTo();

@@ -47,7 +47,7 @@ public class LevelCalculator {
         return MAX_LEVEL;
     }
 
-    public int mapDifficultyLevel(String severity)
+    public static int mapDifficultyLevel(String severity)
     {
         switch(severity)
         {
