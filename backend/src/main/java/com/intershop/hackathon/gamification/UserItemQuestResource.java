@@ -35,32 +35,7 @@ public class UserItemQuestResource
     @Transactional
     public Response postUser(@PathParam("username") String username, @Valid WorkItem workItem)
     {
-        Optional<User> userOptional = userRepository.findByUsername(username);
-        if (!userOptional.isPresent())
-        {
-            return Response.status(404).entity(new Error("user_not_found", "User '" + username + "' not found")).build();
-        }
-
-        Optional<WorkItem> workItemOptional = ado.getWorkItem(workItem.getId());
-        if (!workItemOptional.isPresent())
-        {
-            return Response.status(404).entity(new Error("quest_not_found", "Quest '" + workItem.getId() + "' not found")).build();
-        }
-
-        Optional<Quest> questOptional = questRepository.findByIdOptional(String.valueOf(workItem.getId()));
-        if (!questOptional.isPresent())
-        { // should never happen, but who knows ;)
-            questOptional = Optional.of(questRepository.create(questMapper.apply(workItemOptional.get())));
-        }
-
-        /*ExampleBody: {"id": 82713, "fields": {"System.State": "New"}} */
-        Optional<WorkItem> workItemUpdated = ado.updateWorkItem(workItem.getId(), userOptional.get());
-        if (workItemUpdated.isPresent())
-        {
-            return Response.ok(questUpdateMapper.apply(workItemUpdated.get(), questOptional.get())).build();
-        }
-
-        return Response.status(400).entity(new Error("internal_error", "An error occurred while processing the data")).build();
+        return claimQuest(username, String.valueOf(workItem.getId()));
     }
 
     @GET
@@ -68,6 +43,11 @@ public class UserItemQuestResource
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
     public Response postUser(@PathParam("username") String username, @QueryParam("workitemid") String workItemId)
+    {
+        return claimQuest(username, workItemId);
+    }
+
+    protected Response claimQuest(String username, String workItemId)
     {
         Optional<User> userOptional = userRepository.findByUsername(username);
         if (!userOptional.isPresent())
@@ -81,7 +61,7 @@ public class UserItemQuestResource
             return Response.status(404).entity(new Error("quest_not_found", "Quest '" + workItemId + "' not found")).build();
         }
 
-        Optional<Quest> questOptional = questRepository.findByIdOptional(String.valueOf(workItemId));
+        Optional<Quest> questOptional = questRepository.findByIdOptional(workItemId);
         if (!questOptional.isPresent())
         { // should never happen, but who knows ;)
             questOptional = Optional.of(questRepository.create(questMapper.apply(workItemOptional.get())));
