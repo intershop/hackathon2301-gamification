@@ -14,11 +14,13 @@ insert into achievement (id, title, description, tier) values (nextval('hibernat
 insert into achievement (id, title, description, tier) values (nextval('hibernate_sequence'), 'Firefighter', 'Solve x Bugs', 1);
 insert into achievement (id, title, description, tier) values (nextval('hibernate_sequence'), 'Street', 'Solve x Bugs', 1);
 
-insert into questUser (	id, username, display_name, email, experience_points, achievement_title) values (nextval('hibernate_sequence'), 'paul_anton_rainer', 'Paul Anton Rainer', 'prainer@intershop.com', 0, null);
-insert into questUser (	id, username, display_name, email, experience_points, achievement_title) values (nextval('hibernate_sequence'), 'steven_heyder', 'Steven Heyder', 'sheyder@intershop.com', 0, 'Debugger');
-insert into questUser (	id, username, display_name, email, experience_points, achievement_title) values (nextval('hibernate_sequence'), 'sebastian_glass', 'Sebastian Glass', 'sglass@intershop.com', 200, 'Peace Was No Decision');
-insert into questUser (	id, username, display_name, email, experience_points, achievement_title) values (nextval('hibernate_sequence'), 'sven_dibowski', 'Sven Dibowski', 'sdibowski@intershop.com', 0, null);
-insert into questUser (	id, username, display_name, email, experience_points, achievement_title) values (nextval('hibernate_sequence'), 'ronny_wilms', 'Ronny Wilms', 'rwilms@intershop.com', 0, null);
-insert into questUser (	id, username, display_name, email, experience_points, achievement_title) values (nextval('hibernate_sequence'), 'can_arici', 'Can Arici', 'can.arici@experts.com', 0, null);
-insert into questUser (	id, username, display_name, email, experience_points, achievement_title) values (nextval('hibernate_sequence'), 'dilara_gueler', 'Dilara Güler', 'DGueler@intershop.com', 0, null);
-insert into questUser (	id, username, display_name, email, experience_points, achievement_title) values (nextval('hibernate_sequence'), 'christian_linde', 'Christian Linde', 'clinde@intershop.com', 0, null);
+insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'paul_anton_rainer', 'Paul Anton Rainer', 'prainer@intershop.com', 0);
+insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'steven_heyder', 'Steven Heyder', 'sheyder@intershop.com', 0);
+insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'sebastian_glass', 'Sebastian Glass', 'sglass@intershop.com', 200);
+insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'sven_dibowski', 'Sven Dibowski', 'sdibowski@intershop.com', 0);
+insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'ronny_wilms', 'Ronny Wilms', 'rwilms@intershop.com', 0);
+insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'can_arici', 'Can Arici', 'can.arici@experts.com', 0);
+insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'dilara_gueler', 'Dilara Güler', 'DGueler@intershop.com', 0);
+insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'christian_linde', 'Christian Linde', 'clinde@intershop.com', 0);
+
+insert into user_achievements (user_id , achievement_id) values (10, 2);

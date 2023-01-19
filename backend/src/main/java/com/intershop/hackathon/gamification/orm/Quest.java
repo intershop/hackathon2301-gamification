@@ -38,13 +38,11 @@ public class Quest extends PanacheEntityBase
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "created_by"))
     private User createdBy;
-//    @Column //(nullable = false)
-//    private String createdBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = @ForeignKey(name = "assigned_to"))
     private User assignedTo;
-//@Column private String assignedTo;
+
     @Column(nullable = false)
     private String state;
     @Column

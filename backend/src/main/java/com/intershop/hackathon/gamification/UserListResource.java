@@ -15,14 +15,13 @@ import com.intershop.hackathon.gamification.orm.UserRepository;
 public class UserListResource
 {
     @Inject UserRepository userRepository;
-    @Inject LevelCalculator levelCalculator;
+//    @Inject LevelCalculator levelCalculator;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers()
     {
         List<User> users = userRepository.findAll().list();
-        users.stream().forEach(u -> u.level = levelCalculator.getLevel(u.experience_points));
         return users;
     }
 

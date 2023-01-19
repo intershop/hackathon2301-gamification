@@ -3,7 +3,6 @@ package com.intershop.hackathon.gamification;
 import javax.enterprise.context.ApplicationScoped;
 
 
-@ApplicationScoped
 public class LevelCalculator {
     private static int MAX_LEVEL = 20;
     private static double LEVEL_STEP = 1.15;

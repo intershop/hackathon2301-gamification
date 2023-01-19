@@ -13,8 +13,6 @@ import com.intershop.hackathon.gamification.LevelCalculator;
 @ApplicationScoped
 public class UserRepository implements PanacheRepositoryBase<User, String>
 {
-	@Inject LevelCalculator levelCalculator;
-
 	public User create(User user)
 	{
 		Objects.requireNonNull(user);
@@ -22,27 +20,14 @@ public class UserRepository implements PanacheRepositoryBase<User, String>
 		return user;
 	}
 
-
 	public Optional<User> findByUsername(String username)
 	{
-		Optional<User> userOptional = find("username", username).firstResultOptional();
-		return updateLevel(userOptional);
+		return find("username", username).firstResultOptional();
 	}
 
 	public Optional<User> findByEmail(String email)
 	{
-		Optional<User> userOptional = find("email", email.toLowerCase()).firstResultOptional();
-		return updateLevel(userOptional);
+		return find("email", email.toLowerCase()).firstResultOptional();
 	}
 
-	private Optional<User> updateLevel(Optional<User> userOptional)
-	{
-		if (userOptional.isPresent())
-		{
-			User user = userOptional.get();
-			user.level = levelCalculator.getLevel(user.experience_points);
-			return Optional.of(user);
-		}
-		return userOptional;
-	}
 }

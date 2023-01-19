@@ -20,7 +20,6 @@ public class QuestUpdateMapper implements BiFunction<WorkItem, Quest, Quest>
 {
     @Inject TopicMapper topicMapper;
     @Inject UserRepository userRepository;
-    @Inject LevelCalculator levelCalculator;
 
     @Override
     public Quest apply(WorkItem workItem, Quest quest)

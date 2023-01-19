@@ -19,7 +19,7 @@ public class QuestStatusImport
     @Inject AdoClient ado;
     @Inject QuestRepository questRepository;
     @Inject QuestUpdateMapper questUpdateMapper;
-    @Inject LevelCalculator levelCalculator;
+    LevelCalculator levelCalculator = new LevelCalculator();
 
     public void checkForStatusUpdates()
     {

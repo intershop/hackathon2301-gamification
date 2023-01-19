@@ -34,7 +34,6 @@ public class QuestItemResource
         if (workItem.isPresent())
         {
             return Response.ok(questMapper.apply(workItem.get())).build();
-//            return Response.ok(workItem.get()).build();
         }
         return Response.status(404, "Quest not found").build();
     }
