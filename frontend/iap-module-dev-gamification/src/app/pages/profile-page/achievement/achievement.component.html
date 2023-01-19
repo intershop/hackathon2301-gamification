@@ -1,8 +1,5 @@
 <div class="achievement">
-  <img
-    class="medal"
-    [attr.src]="assetUrl('achievements/goldmedaille_gepixelt.gif')"
-  />
+  <img class="medal" [attr.src]="getTier()" />
 
   <img class="icon" [attr.src]="getImg()" />
 </div>

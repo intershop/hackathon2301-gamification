@@ -1,0 +1,30 @@
+<iap-hud></iap-hud>
+<div id="quest-list">
+  <div class="container">
+    <div id="loadingBug" class="d-none">
+      <img src="{{ bugImgUrl }}" alt="Bug" />
+    </div>
+    <div id="calendar" class="d-flex flex-row">
+      <div id="calendar-sheet">
+        <a class="back" [routerLink]="['../map']">&lt;&lt;</a>
+
+        <div id="calendar-overview">
+          <h1>HIGH SCORES</h1>
+          <div
+            *ngFor="let user of users"
+            class="d-flex"
+            [routerLink]="'../profile/' + user.username"
+          >
+            <img class="avatar" src="{{ getUrl(user.display_name) }}" />
+            <div>
+              {{ user.display_name }} <br />Level {{ user.level }} ({{
+                user.experience_points
+              }}
+              Exp)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

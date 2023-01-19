@@ -1,10 +1,10 @@
 <div class="row">
   <div class="container" *ngIf="user$ | async as user">
-    <a class="back" routerLink="../map">&lt;&lt;</a>
+    <a class="back" routerLink="../../map">&lt;&lt;</a>
     <h1>{{ user.display_name }}</h1>
     <p>
       <span *ngIf="user.achievement_title">{{ user.achievement_title }}</span>
-      Level 2
+      Level {{ user.level }}
     </p>
     <h2>Achievements</h2>
     <div class="d-flex">

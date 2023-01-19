@@ -1,0 +1,91 @@
+:host>* {
+    margin: 0;
+    min-height: calc(100vh - 87px);
+}
+
+#loadingBug {
+    animation: slidein 4s linear infinite;
+    position: absolute;
+    transform: rotate(90deg);
+    top: calc(50vh - 87px);
+}
+
+@keyframes slidein {
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left: 95%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+#quest-list {
+    background: #000;
+    position: relative;
+}
+
+#quest-list>button {
+    position: absolute;
+    left: 2rem;
+    top: 2rem;
+}
+
+#calendar {
+    background-color: #398F91;
+    min-height: calc(100vh - 87px);
+}
+
+#calendar-detail {
+    border: 6px solid #027368;
+    padding: .5rem;
+}
+
+#calendar-overview {}
+
+#calendar-sheet {
+    flex-basis: 100%;
+    padding: 1rem;
+    gap: 10px;
+    position: relative;
+}
+
+#calendar-sheet>div {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.avatar {
+    width: 100px;
+}
+
+#calendar-overview>div {
+    border: 4px solid #027368;
+    padding: 10px;
+    margin: 15px;
+    overflow: hidden;
+    color: white;
+
+    &.active {
+        background-color: #30D99B;
+        color: #003A55;
+    }
+}
+
+a.back {
+    font-size: 50px;
+    position: absolute;
+    width: 30px;
+    left: -50px;
+    text-decoration: none;
+}
+
+.badge-new {
+    background-color: #00D2FF;
+    color: #003A55;
+    padding: .3rem;
+}

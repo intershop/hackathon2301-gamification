@@ -1,6 +1,10 @@
-<div class="hud" [routerLink]="'../profile'">
-  <img class="avatar" src="{{ getUrl() }}" />
-  <div class="user">{{ (user$ | async)?.profile?.fullName }}</div>
-  <div class="level">Thinkerer, Lv 2</div>
-  <progress value="3" max="10"></progress>
+<div class="hud" *ngIf="user$ | async as user">
+  <img
+    class="avatar"
+    src="{{ getUrl(user.display_name) }}"
+    [routerLink]="'../profile/' + user.username"
+  />
+  <div class="user">{{ user.display_name }}</div>
+  <div class="level" [routerLink]="'../score'">Level {{ user.level }}</div>
+  <progress value="{{ user.experience_points }}" max="300"></progress>
 </div>

@@ -11,6 +11,7 @@ import { QuestItemComponent } from './components/quest-item/quest-item.component
 import { HttpClientModule } from '@angular/common/http';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { AchievementComponent } from './pages/profile-page/achievement/achievement.component';
+import { HighscorePageComponent } from './pages/highscore-page/highscore-page.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AchievementComponent } from './pages/profile-page/achievement/achieveme
     QuestItemComponent,
     ProfilePageComponent,
     AchievementComponent,
+    HighscorePageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
