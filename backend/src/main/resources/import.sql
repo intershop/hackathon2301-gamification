@@ -22,6 +22,7 @@ insert into questUser (	id, username, display_name, email, experience_points) va
 insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'can_arici', 'Can Arici', 'can.arici@xim.ag', 24);
 insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'dilara_gueler', 'Dilara Güler', 'DGueler@intershop.com', 55);
 insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'christian_linde', 'Christian Linde', 'clinde@intershop.com', 169);
+insert into questUser (	id, username, display_name, email, experience_points) values (nextval('hibernate_sequence'), 'inken_wiederhold', 'Inken Wiederhold', 'iwiederhold@intershop.com', 190);
 
 insert into user_achievements (user_id , achievement_id) values (8, 1);
 insert into user_achievements (user_id , achievement_id) values (9, 1);
@@ -41,5 +42,6 @@ insert into user_achievements (user_id , achievement_id) values (13, 1);
 insert into user_achievements (user_id , achievement_id) values (13, 5);
 insert into user_achievements (user_id , achievement_id) values (14, 1);
 insert into user_achievements (user_id , achievement_id) values (15, 1);
+insert into user_achievements (user_id , achievement_id) values (16, 7);
 
 
