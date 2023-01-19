@@ -3,6 +3,7 @@ package com.intershop.hackathon.gamification;
 import java.util.List;
 import java.util.Optional;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 import org.azd.workitemtracking.types.WorkItem;
@@ -11,10 +12,10 @@ import com.intershop.hackathon.gamification.ado.AdoClient;
 import com.intershop.hackathon.gamification.ado.QuestUpdateMapper;
 import com.intershop.hackathon.gamification.orm.Quest;
 import com.intershop.hackathon.gamification.orm.QuestRepository;
+import com.intershop.hackathon.gamification.orm.User;
 
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
-
-public class QuestStatusImport
+@ApplicationScoped
+public class QuestUpdater
 {
     @Inject AdoClient ado;
     @Inject QuestRepository questRepository;
@@ -27,26 +28,40 @@ public class QuestStatusImport
 
         for (Quest quest: questList)
         {
-            String currentState = quest.getState();
-            Optional<WorkItem> workItemOptional = ado.getWorkItem(quest.getId());
-
-            if (workItemOptional.isPresent())
+            if (!"Closed".equals(quest.getState())) // TODO filter in repo
             {
-                // TODO update only if needed
-                quest = questUpdateMapper.apply(workItemOptional.get(), quest);
+                Optional<WorkItem> workItemOptional = ado.getWorkItem(quest.getId());
+
+                updateQuest(quest, workItemOptional.orElse(null));
             }
         }
+    }
+
+    public Quest updateQuest(Quest quest, WorkItem workItem)
+    {
+        if (workItem != null)
+        {
+            String state = quest.getState();
+            quest = questUpdateMapper.apply(workItem, quest);
+            creditExperiencePoints(quest, state);
+        }
+
+        return quest;
     }
 
     protected void creditExperiencePoints(Quest quest, String previousState)
     {
         if ("Closed".equals(quest.getState()) && !previousState.equals(quest.getState()))
         {
-            int level = levelCalculator.getLevel(
+            int claimedPoints = LevelCalculator.getExpPoints(
                 levelCalculator.mapDifficultyLevel(quest.getSeverity())
             );
 
-//            String assignedTo = quest.getAssignedTo(); // TODO
+            User assignedTo = quest.getAssignedTo();
+            if (assignedTo != null)
+            {
+                assignedTo.experience_points += claimedPoints;
+            }
         }
     }
 }

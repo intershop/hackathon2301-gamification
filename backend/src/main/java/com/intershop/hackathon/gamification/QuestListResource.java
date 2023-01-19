@@ -33,6 +33,7 @@ public class QuestListResource
 
     @Inject QuestMapper questMapper;
     @Inject QuestUpdateMapper questUpdateMapper;
+    @Inject QuestUpdater questUpdater;
 
     public QuestListResource(QuestRepository questRepository)
     {
@@ -52,7 +53,7 @@ public class QuestListResource
             Quest quest;
             if (questOpt.isPresent()) // TODO extract DB change from GET
             {
-                quest = questUpdateMapper.apply(wi, questOpt.get());
+                quest = questUpdater.updateQuest(questOpt.get(), wi);
             }
             else
             {
