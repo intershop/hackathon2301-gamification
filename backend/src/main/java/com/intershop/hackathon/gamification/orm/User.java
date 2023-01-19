@@ -1,9 +1,7 @@
 package com.intershop.hackathon.gamification.orm;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
-import javax.inject.Inject;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -85,6 +83,23 @@ public class User extends PanacheEntityBase
 
 	public int getLevel()
 	{
-		return levelCalculator.getLevel(this.experience_points);
+		return levelCalculator.getLevel(this.experience_points) +1;
+	}
+
+	public int getExperiencePointsCurrentLevel()
+	{
+		int level = getLevel()-1;
+
+		if (level == 0)
+		{
+			return 0;
+		}
+
+		return levelCalculator.getExperiencePoints(level -1);
+	}
+
+	public int getExperiencePointsNextLevel()
+	{
+		return levelCalculator.getExperiencePoints(getLevel()-1);
 	}
 }

@@ -30,6 +30,11 @@ public class LevelCalculator {
         return levelCaps;
     }
 
+    public int getExperiencePoints(int level)
+    {
+        return levelCaps[level];
+    }
+
     public int getLevel(int expPoints)
     {
         for(int level=0;level < MAX_LEVEL;level++ )
