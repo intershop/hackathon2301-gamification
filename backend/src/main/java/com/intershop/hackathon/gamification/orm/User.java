@@ -20,6 +20,7 @@ import java.util.TreeSet;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.intershop.hackathon.gamification.LevelCalculator;
 
 @Entity
@@ -86,6 +87,7 @@ public class User extends PanacheEntityBase
 		return levelCalculator.getLevel(this.experience_points) +1;
 	}
 
+	@JsonProperty("experience_points_current_level")
 	public int getExperiencePointsCurrentLevel()
 	{
 		int level = getLevel()-1;
@@ -98,6 +100,7 @@ public class User extends PanacheEntityBase
 		return levelCalculator.getExperiencePoints(level -1);
 	}
 
+	@JsonProperty("experience_points_next_level")
 	public int getExperiencePointsNextLevel()
 	{
 		return levelCalculator.getExperiencePoints(getLevel()-1);
