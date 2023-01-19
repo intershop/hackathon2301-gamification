@@ -33,7 +33,6 @@ insert into user_achievements (user_id , achievement_id) values (10, 2);
 insert into user_achievements (user_id , achievement_id) values (10, 3);
 insert into user_achievements (user_id , achievement_id) values (10, 4);
 insert into user_achievements (user_id , achievement_id) values (10, 6);
-insert into user_achievements (user_id , achievement_id) values (10, 1);
 insert into user_achievements (user_id , achievement_id) values (11, 1);
 insert into user_achievements (user_id , achievement_id) values (12, 1);
 insert into user_achievements (user_id , achievement_id) values (12, 3);
