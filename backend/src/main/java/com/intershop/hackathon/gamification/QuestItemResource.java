@@ -18,22 +18,46 @@ import org.azd.workitemtracking.types.WorkItem;
 
 import com.intershop.hackathon.gamification.ado.AdoClient;
 import com.intershop.hackathon.gamification.ado.QuestMapper;
+import com.intershop.hackathon.gamification.orm.Quest;
+import com.intershop.hackathon.gamification.orm.QuestRepository;
 
 @Path("/quests/{id}")
 public class QuestItemResource
 {
+    private final QuestRepository questRepository;
     @Inject AdoClient ado;
     @Inject QuestMapper questMapper;
+    @Inject QuestUpdater questUpdater;
+
+    public QuestItemResource(QuestRepository questRepository)
+    {
+        this.questRepository = questRepository;
+    }
 
     @GET
     @Produces(RestConstants.MEDIA_TYPE_JSON_API)
     @Consumes(MediaType.APPLICATION_JSON)
+    @Transactional
     public Response getQuest(@PathParam("id") String id)
     {
-        Optional<WorkItem> workItem = ado.getWorkItem(id);
-        if (workItem.isPresent())
+        Optional<WorkItem> workItemOptional = ado.getWorkItem(id);
+        if (workItemOptional.isPresent())
         {
-            return Response.ok(questMapper.apply(workItem.get())).build();
+            WorkItem workItem = workItemOptional.get();
+            Optional<Quest> questOptional = questRepository.findByIdOptional(String.valueOf(workItem.getId()));
+
+            Quest quest;
+            if (questOptional.isPresent())
+            {
+                quest = questOptional.get();
+                quest = questUpdater.updateQuest(quest, workItem);
+            }
+            else {
+                quest = questMapper.apply(workItem);
+                questRepository.create(quest);
+            }
+
+            return Response.ok(quest).build();
         }
         return Response.status(404, "Quest not found").build();
     }
