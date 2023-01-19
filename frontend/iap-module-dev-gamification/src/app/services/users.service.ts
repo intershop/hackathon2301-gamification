@@ -19,7 +19,7 @@ export class UsersService {
     //return the user
     return this.httpClient.get<any>(
       'https://10.0.29.131:9443/users/' +
-        name.toLocaleLowerCase().replace(' ', '_').replace('ß', 'ss')
+        name.toLocaleLowerCase().replace(' ', '_').replace('ß', 'ss').replace('ü', 'ue')
     );
   }
 }

@@ -1,27 +1,53 @@
-:host>* {
-    margin: 0;
-    height: calc(100vh - 87px);
-    background-color: black;
-
+:host > * {
+  margin: 0;
+  height: calc(100vh - 87px);
+  background-color: black;
+  color: white;
+  font-size: 24px;
 }
 
 a.back {
-    font-size: 50px;
-    position: absolute;
-    width: 30px;
-    left: -50px;
-    text-decoration: none;
+  font-size: 50px;
+  position: absolute;
+  width: 30px;
+  left: -50px;
+  text-decoration: none;
+}
 
+.displayName {
+  margin-top: 30px;
+  color: white;
+}
+
+.level {
+  margin-top: 55px;
+}
+
+progress {
+  width: 100%;
+  border: 2px solid white;
+  height: 20px;
+  background: white;
+}
+
+/* For Firefox */
+progress::-moz-progress-bar {
+  background: #398f91;
+}
+
+/* For Chrome or Safari */
+progress::-webkit-progress-value {
+  background: #398f91;
 }
 
 .container {
-    position: relative;
+  position: relative;
 }
 
 h1 {
-    font-size: 66px;
+  font-size: 66px;
 }
 
 h2 {
-    padding-top: 30px;
+  padding-top: 30px;
 }
