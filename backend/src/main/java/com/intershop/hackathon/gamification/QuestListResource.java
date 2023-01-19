@@ -28,7 +28,8 @@ import com.intershop.hackathon.gamification.orm.User;
 public class QuestListResource
 {
 
-    private final QuestRepository questRepository;
+    @Inject
+    QuestRepository questRepository;
     @Inject
     AdoClient ado;
 
@@ -36,10 +37,10 @@ public class QuestListResource
     @Inject QuestUpdateMapper questUpdateMapper;
     @Inject QuestUpdater questUpdater;
 
-    public QuestListResource(QuestRepository questRepository)
+    /*public QuestListResource(QuestRepository questRepository)
     {
         this.questRepository = questRepository;
-    }
+    }*/
 
     @GET
     @Produces(RestConstants.MEDIA_TYPE_JSON_API)

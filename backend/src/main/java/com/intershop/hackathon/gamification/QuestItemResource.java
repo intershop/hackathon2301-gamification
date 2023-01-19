@@ -24,15 +24,16 @@ import com.intershop.hackathon.gamification.orm.QuestRepository;
 @Path("/quests/{id}")
 public class QuestItemResource
 {
-    private final QuestRepository questRepository;
+    @Inject
+    QuestRepository questRepository;
     @Inject AdoClient ado;
     @Inject QuestMapper questMapper;
     @Inject QuestUpdater questUpdater;
 
-    public QuestItemResource(QuestRepository questRepository)
+    /*public QuestItemResource(QuestRepository questRepository)
     {
         this.questRepository = questRepository;
-    }
+    }*/
 
     @GET
     @Produces(RestConstants.MEDIA_TYPE_JSON_API)
