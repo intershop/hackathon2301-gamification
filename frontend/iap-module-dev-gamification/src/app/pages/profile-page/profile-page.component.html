@@ -12,14 +12,14 @@
           Level {{ user.level }}
         </p>
         <progress value="3" max="10"></progress>
+        <h2 class="achievements">Achievements</h2>
+        <div class="d-flex coins">
+          <iap-achievement class="coin"
+            *ngFor="let a of user.achievements"
+            [achievement]="a"
+          ></iap-achievement>
+        </div>
       </div>
-    </div>
-    <h2 style="color: white">Achievements</h2>
-    <div class="d-flex">
-      <iap-achievement
-        *ngFor="let a of user.achievements"
-        [achievement]="a"
-      ></iap-achievement>
     </div>
   </div>
 </div>
