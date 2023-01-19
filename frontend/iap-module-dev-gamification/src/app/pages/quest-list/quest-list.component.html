@@ -9,7 +9,6 @@
                     <div *ngIf="selectedQuest">
                         <h1>{{ selectedQuest.title }}</h1>
                         <p class="createdby">{{ selectedQuest.createdBy.username }}</p>
-                        <span class="badge-new">{{ selectedQuest.state }}</span>
                         <div *ngIf="user$ | async as user" (click)="claimQuest(selectedQuest.id, user.username)">CLAIM!</div>
                     </div>
                 </div>

@@ -63,7 +63,8 @@ export class QuestListComponent implements OnInit {
   }
 
   claimQuest(questId: number, user: string) {
-    this.questService.claimQuest(questId, user);
+    // console.log(this.questService.claimQuest(questId, user));
+    console.log(this.questService.claimQuest(questId, user).subscribe());
   }
 
   getUsers(): void {
