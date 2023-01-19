@@ -16,7 +16,7 @@ export class AchievementComponent implements OnInit {
   getImg() {
     switch (this.achievement.title) {
       case 'Debugger':
-        return assetUrl('achievements/bug_test.gif');
+        return assetUrl('achievements/bug.gif');
       case 'Self Sustained':
         return assetUrl('achievements/self.gif');
       case 'Peace Was No Decision':

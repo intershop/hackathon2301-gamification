@@ -12,6 +12,7 @@ a.back {
   width: 30px;
   left: -50px;
   text-decoration: none;
+  margin-top: 30px;
 }
 
 .displayName {
@@ -58,14 +59,14 @@ h2 {
 }
 
 .achievements {
-  margin-top:20px;
-  color: white,
+  margin-top: 20px;
+  color: white;
 }
 
-.coins{
-
+.coins {
+  justify-content: space-between;
 }
 
-.coin{
+.coin {
   margin-top: 20px;
 }
