@@ -17,9 +17,10 @@ export class UsersService {
   getUser(name: string): Observable<User> {
     //TO DO: search for the user by email
     //return the user
+    console.log(name.replaceAll(' ', '_'));
     return this.httpClient.get<any>(
       'https://10.0.29.131:9443/users/' +
-        name.toLocaleLowerCase().replace(' ', '_').replace('ß', 'ss').replace('ü', 'ue')
+        name.toLocaleLowerCase().replaceAll(' ', '_').replace('ß', 'ss').replace('ü', 'ue')
     );
   }
 }

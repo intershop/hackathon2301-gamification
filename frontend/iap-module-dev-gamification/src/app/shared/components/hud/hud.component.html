@@ -2,9 +2,10 @@
   <img
     class="avatar"
     src="{{ getUrl(user.display_name) }}"
-    [routerLink]="'../profile/' + user.username"
+    [routerLink]="'/dev-cockpit/gamification/profile/' + user.username"
   />
   <div class="user">{{ user.display_name }}</div>
   <div class="level" [routerLink]="'../score'">Level {{ user.level }}</div>
-  <progress value="{{ user.experience_points }}" max="300"></progress>
+  <progress value="{{ user.experience_points - user.experience_points_current_level  }}" max="{{ user.experience_points_next_level - user.experience_points_current_level }}"></progress>
 </div>
+

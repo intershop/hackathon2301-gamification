@@ -41,6 +41,16 @@
 #calendar-detail {
     border: 6px solid #027368;
     padding: .5rem;
+    color: white;
+}
+
+h1 {
+    color: white;
+    margin-bottom: .75rem;
+}
+
+.createdby {
+    margin-bottom: .5rem;
 }
 
 #calendar-overview {
@@ -68,8 +78,8 @@
     color: white;
 
     &.active {
-        background-color: #30D99B;
-        color: #003A55;
+        background-color: #4dc2c4;
+        color: white;
     }
 }
 
@@ -83,6 +93,6 @@ a.back {
 
 .badge-new {
     background-color: #00D2FF;
-    color: #003A55;
+    color: white;
     padding: .3rem;
 }

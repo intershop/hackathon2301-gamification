@@ -7,6 +7,10 @@ import { TopicOverview } from 'src/app/models/topic.model';
 import { map, delay } from 'rxjs/operators';
 import { assetUrl } from 'src/single-spa/asset-url';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { CurrentUserService } from '@intershop/iap-core';
+
 
 @Component({
   selector: 'iap-quest-list',
@@ -14,7 +18,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./quest-list.component.scss']
 })
 export class QuestListComponent implements OnInit {
-
+  user$!: Observable<any>;
   team: string = "";
   quests?: Quest[];
   users: User[] = [];
@@ -27,8 +31,13 @@ export class QuestListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private questService: QuestsService,
-    private userService: UsersService
-  ) { }
+    private userService: UsersService,
+    private currentUser: CurrentUserService
+  ) {
+    this.user$ = this.currentUser
+      .getCurrentUser()
+      .pipe(switchMap((u) => this.userService.getUser(u.profile.fullName)));
+   }
 
   ngOnInit(): void {
     this.team = this.route.snapshot.paramMap.get('team') || "";
@@ -51,7 +60,10 @@ export class QuestListComponent implements OnInit {
   showQuestDetail(questId: number) {
     this.selectedQuest = this.quests?.find((quest) => quest.id == questId);
     console.log(this.selectedQuest);
+  }
 
+  claimQuest(questId: number, user: string) {
+    this.questService.claimQuest(questId, user);
   }
 
   getUsers(): void {

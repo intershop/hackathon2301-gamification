@@ -36,4 +36,10 @@ export class QuestsService {
   addQuest(quest: Quest): void {
     this.QUESTS.push(quest);
   }
+
+  claimQuest(user: string, questId: number): Observable<TopicOverview> {
+    const url = `https://10.0.29.131:9443/users/${user}/quests`;
+    return this.httpClient.post<any>(url, questId);
+  }
+  
 }
