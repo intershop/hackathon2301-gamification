@@ -11,15 +11,14 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { CurrentUserService } from '@intershop/iap-core';
 
-
 @Component({
   selector: 'iap-quest-list',
   templateUrl: './quest-list.component.html',
-  styleUrls: ['./quest-list.component.scss']
+  styleUrls: ['./quest-list.component.scss'],
 })
 export class QuestListComponent implements OnInit {
   user$!: Observable<any>;
-  team: string = "";
+  team: string = '';
   quests?: Quest[];
   users: User[] = [];
   selectedQuest?: Quest;
@@ -37,24 +36,27 @@ export class QuestListComponent implements OnInit {
     this.user$ = this.currentUser
       .getCurrentUser()
       .pipe(switchMap((u) => this.userService.getUser(u.profile.fullName)));
-   }
+  }
 
   ngOnInit(): void {
-    this.team = this.route.snapshot.paramMap.get('team') || "";
+    this.team = this.route.snapshot.paramMap.get('team') || '';
     this.getQuestsByTeamName(this.team);
     this.getUsers();
   }
 
   getQuestsByTeamName(team: string): void {
-    document.getElementById("loadingBug")?.classList.remove("d-none");
-    this.questService.getQuests().pipe(
-        map(questsMap => questsMap[team]),
+    document.getElementById('loadingBug')?.classList.remove('d-none');
+    this.questService
+      .getQuests()
+      .pipe(
+        map((questsMap) => questsMap[team]),
         delay(1700)
-      ).subscribe((questsArray) => { 
-      (this.quests = questsArray.filter(q=>q.state==="New"));
-      document.getElementById("loadingBug")?.classList.add("d-none");
-      console.log(this.quests);
-    });
+      )
+      .subscribe((questsArray) => {
+        this.quests = questsArray.filter((q) => q.state === 'New');
+        document.getElementById('loadingBug')?.classList.add('d-none');
+        console.log(this.quests);
+      });
   }
 
   showQuestDetail(questId: number) {
@@ -64,12 +66,13 @@ export class QuestListComponent implements OnInit {
 
   claimQuest(questId: number, user: string) {
     // console.log(this.questService.claimQuest(questId, user));
-   (this.questService.claimQuest(questId, user).subscribe());
+    this.questService.claimQuest(questId, user).subscribe((e) => {
+      alert('claimed');
+      window.location.reload();
+    });
   }
 
   getUsers(): void {
     this.userService.getUsers().subscribe((users) => (this.users = users));
   }
-
-
 }
