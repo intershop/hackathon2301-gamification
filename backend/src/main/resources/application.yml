@@ -17,6 +17,8 @@ quarkus:
 
   http:
     cors: true
+    origins: https://iap.cloud.intershop.com,http://localhost
+    methods: GET,POST
     access-log:
       enabled: true;
       log-to-file: true;
