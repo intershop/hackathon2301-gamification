@@ -38,7 +38,7 @@ export class QuestsService {
   }
 
   claimQuest(questId: number, user: string): Observable<TopicOverview> {
-    const body = { id: questId };
+    const body = JSON.stringify({ id: questId });
     const url = `https://10.0.29.131:9443/users/${user}/quests`;
     return this.httpClient.post<any>(url, body);
   }

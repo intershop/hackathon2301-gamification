@@ -9,7 +9,7 @@
                     <div *ngIf="selectedQuest">
                         <h1>{{ selectedQuest.title }}</h1>
                         <p class="createdby">{{ selectedQuest.createdBy.username }}</p>
-                        <div *ngIf="user$ | async as user" (click)="claimQuest(selectedQuest.id, user.username)">CLAIM!</div>
+                        <div class="btn-claim" *ngIf="user$ | async as user" (click)="claimQuest(selectedQuest.id, user.username)">CLAIM!</div>
                     </div>
                 </div>
                 <div *ngIf="quests" id="calendar-overview" class="d-grid">

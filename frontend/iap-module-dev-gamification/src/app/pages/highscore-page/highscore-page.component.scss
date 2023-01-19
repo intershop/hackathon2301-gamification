@@ -10,6 +10,12 @@
     top: calc(50vh - 87px);
 }
 
+.btn-claim {
+    margin-top: 20px;
+    padding: .5rem;
+    border: 2px solid white;
+}
+
 @keyframes slidein {
     0% {
         left: 0;
