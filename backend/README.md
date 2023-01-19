@@ -57,6 +57,13 @@ You can then execute your native executable with: `./build/gamification-server-1
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
 
+Build a jvm docker image
+```shell script
+./gradlew build
+docker build --tag=hackathon2023-gamification-backend:latest --file=./src/main/docker/Dockerfile.jvm .
+docker run -i --rm --name hackathon2023-gameification-backend -p 8080:8080 -e INTERSHOP_ADO_TOKEN=<token> -e INTERSHOP_ADO_ORGANIZATION=<organization> -e INTERSHOP_ADO_PROJECT=<project> hackathon2023-gamification-backend:latest
+```
+
 ## Related Guides
 
 - REST resources for Hibernate ORM with Panache ([guide](https://quarkus.io/guides/rest-data-panache)): Generate JAX-RS resources for your Hibernate Panache entities and repositories
@@ -94,3 +101,5 @@ Invoke different services through REST with JSON
 Easily start your RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+
+
