@@ -8,7 +8,7 @@
                 <div id="calendar-detail" class="d-flex">
                     <div *ngIf="selectedQuest">
                         <h1>{{ selectedQuest.title }}</h1>
-                        <p class="createdby">{{ selectedQuest.createdBy.username }}</p>
+                        <p class="createdby">Created by: {{ selectedQuest.createdBy.display_name }}</p>
                         <div class="btn-claim" *ngIf="user$ | async as user" (click)="claimQuest(selectedQuest.id, user.username)">CLAIM!</div>
                     </div>
                 </div>

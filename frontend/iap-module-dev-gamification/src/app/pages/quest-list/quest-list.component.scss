@@ -10,6 +10,15 @@
     top: calc(50vh - 87px);
 }
 
+.btn-claim {
+    margin-top: 20px;
+    padding: .5rem;
+    border: 2px solid white;
+    background-color: #4dc2c4;
+    color: white;
+    width: 200px;
+}
+
 @keyframes slidein {
     0% {
         left: 0;
@@ -55,7 +64,7 @@ h1 {
 
 #calendar-overview {
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(3, auto);
     gap: .5rem;
 }
 

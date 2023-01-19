@@ -51,7 +51,7 @@ export class QuestListComponent implements OnInit {
         map(questsMap => questsMap[team]),
         delay(1700)
       ).subscribe((questsArray) => { 
-      (this.quests = questsArray);
+      (this.quests = questsArray.filter(q=>q.state==="New"));
       document.getElementById("loadingBug")?.classList.add("d-none");
       console.log(this.quests);
     });
@@ -64,7 +64,7 @@ export class QuestListComponent implements OnInit {
 
   claimQuest(questId: number, user: string) {
     // console.log(this.questService.claimQuest(questId, user));
-   (this.questService.claimQuest(questId, user).subscribe(e=> console.log(e)));
+   (this.questService.claimQuest(questId, user).subscribe());
   }
 
   getUsers(): void {
