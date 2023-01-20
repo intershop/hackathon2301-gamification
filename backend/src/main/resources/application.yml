@@ -7,8 +7,9 @@ quarkus:
 
   # datasource configuration
   datasource:
+    db-kind: h2
     jdbc:
-      url: jdbc:h2:file:./main:default
+      url: jdbc:h2:file:./main
       driver: org.h2.Driver
 
   hibernate-orm:
@@ -33,8 +34,9 @@ quarkus:
 "%dev":
   quarkus:
     datasource:
+      db-kind: h2
       jdbc:
-        url: jdbc:h2:mem:default
+        url: jdbc:h2:file:./main
         driver: org.h2.Driver
 
     hibernate-orm:
